@@ -21,6 +21,7 @@ const Home = () => {
 	const changeMovement = () => setMovementButtonIsVisible(window.scrollY >= 800/2) //hero section height
 	useEffect(() => window.addEventListener('scroll', changeMovement))
 	
+	const [darkThemeSlider, setDarkThemeSlider] = useState(false)
 
 	return (
 		<>
@@ -28,7 +29,9 @@ const Home = () => {
 			<Sidebar isOpen={sidebarIsOpen} toggle={toggleSidebar}/>
 			<Navbar toggle={toggleSidebar}/>
 			<MovementButton movementButtonIsVisible={movementButtonIsVisible} to='home' smooth={true} duration={500} spy={true} exact={1} offset={-80}><AiOutlineUp /></MovementButton>
-			<Pullout />
+			{/* <Slider toggle={setDarkThemeSlider}/> */}
+			{/* make overridable from computer setting by using a use state that starts as that but changes */}
+			<Pullout {...pulloutData}/>
 			<HeroSection id='home'/>
 			<InfoSection {...homeObjOne}/>
 			<InfoSection {...homeObjTwo}/>
@@ -40,3 +43,45 @@ const Home = () => {
 }
 
 export default Home
+
+const pulloutData = {
+	title: 'Updates',
+	cards: [
+		{
+			index: 0, 
+			icon: require('../images/svg-1.svg').default,
+			title: 'really really really really really really really really long title',
+			previewDescription: 'really really really really really really really really long update preview description really really really really really really really really long update preview description ',
+			isOpen: false,
+			fullText: 'Full text here',
+			date: Date.now(),
+		},
+		{
+			index: 1,
+			icon: require('../images/svg-4.svg').default,
+			title: 'Headline 2',
+			previewDescription: 'Update preview description',
+			isOpen: false,
+			fullText: 'Full text here',
+			date: Date.now(),
+		},
+		{
+			index: 2,
+			icon: require('../images/svg-3.svg').default,
+			title: 'Headline 3',
+			previewDescription: 'Update preview description',
+			isOpen: false,
+			fullText: 'Full text here',
+			date: Date.now(),
+		},
+		{
+			index: 3,
+			icon: require('../images/svg-2.svg').default,
+			title: 'Headline 4',
+			previewDescription: 'Update preview description',
+			isOpen: false,
+			fullText: 'Full text here',
+			date: Date.now(),
+		}
+	]
+}
