@@ -1,0 +1,7 @@
+{
+	"highlight-color": ":root { --highlightColor: ${value}; }",
+	"light-theme-background-color": ":root.light-theme { --bgColor: ${value}; }",
+	"dark-theme-background-color": ":root.dark-theme { --bgColor: ${value}; }",
+	"light-theme-text-color": ":root.light-theme { --textColor: ${value}; }",
+	"dark-theme-text-color": ":root.dark-theme { --textColor: ${value}; }"
+}

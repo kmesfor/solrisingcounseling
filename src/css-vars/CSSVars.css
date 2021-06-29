@@ -1,0 +1,13 @@
+:root {
+	--highlightColor: #01bf71;
+}
+
+:root.light-theme {
+	--bgColor: #ffffff;
+	--textColor: #726f6f;
+}
+
+:root.dark-theme {
+	--bgColor: #262626;
+	--textColor: #fff;
+}
