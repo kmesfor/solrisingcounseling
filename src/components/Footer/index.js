@@ -14,7 +14,7 @@ const Footer = () => {
 					<FooterLinksWrapper>
 						<FooterLinkItems>
 							<FooterLinkTitle>About</FooterLinkTitle>
-							<FooterLink to="/signin">Link 1</FooterLink> {/* if you want to link outside the page, use the <a> tag*/}
+							<FooterLink to={{ pathname: "https://google.com" }} target="_blank">Link 1</FooterLink> {/* if you want to link outside the page, use the <a> tag*/}
 							<FooterLink to="/signin">Link 2</FooterLink>
 							<FooterLink to="/signin">Link 3</FooterLink>
 							<FooterLink to="/signin">Link 4</FooterLink>

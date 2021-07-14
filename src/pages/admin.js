@@ -1,15 +1,16 @@
 import React from 'react'
 
-import SignIn from '../components/Signin'
+import AdminPanel from '../components/AdminPanel'
 import ScrollToTop from '../components/ScrollToTop'
 
-const SigninPage = () => {
+const AdminPage = () => {
+
 	return (
 		<>
 			<ScrollToTop />
-			<SignIn />
+			<AdminPanel />
 		</>
 	)
 }
 
-export default SigninPage
+export default AdminPage

@@ -1,25 +1,54 @@
 import React, { useState } from 'react'
-import { FaArrowCircleRight } from 'react-icons/fa'
+import { FaArrowCircleRight, FaArrowCircleLeft } from 'react-icons/fa'
 import { AiOutlineDoubleRight } from 'react-icons/ai'
-import { PulloutContainer, Icon, CloseIcon, PulloutWrapper, PulloutTitle, PulloutCard, PulloutCardIcon, PulloutCardTitle, PulloutCardPreviewDesc, PulloutCardViewMoreBtn, PulloutCardExpanded } from './PulloutElements'
+import { PulloutContainer, Icon, CloseIcon, PulloutWrapper, PulloutTitle, PulloutCard, PulloutCardIcon, PulloutCardTitle, PulloutCardPreviewDesc, PulloutCardViewMoreBtn, PulloutCardExpandedWrapper, PulloutCardExpandedCloseIcon, PulloutCardExpandedBanner, PulloutCardExpandedHorizontal } from './PulloutElements'
 
 const Pullout = ({ title, cards }) => {
 	const [pulloutIsOpen, setPulloutIsOpen] = useState(false)
 
-	const togglePullout = () => setPulloutIsOpen(!pulloutIsOpen)
+	const togglePullout = () => {
+		setPulloutIsOpen(!pulloutIsOpen)
+		setActivePullout(undefined)
+	}
 
-	const [activePullout, setActivePullout] = useState(0)
+	const [activePullout, setActivePullout] = useState(undefined)
+	
+	const handleExpanded = (index) => {
+		if (activePullout !== index) {
+			setActivePullout(index)
+		} else {
+			setActivePullout(undefined)
+		}
+	}
 	
 	const state = {
 		activePullout: activePullout,
 		setActivePullout: setActivePullout,
-		// TODO: add an index key so props know what to set the state to when toggled
 	}
 	return (
 		<>
-		<PulloutCardExpanded card={card} state={state} isopen={pulloutIsOpen}/>
+		{
+			//render cards overtop of pullout to get rid of inherited opacity
+			cards.map(card => {
+				return (
+					<>
+						<PulloutCardExpandedWrapper card={card} state={state} isopen={pulloutIsOpen}>
+							<PulloutCardExpandedCloseIcon onClick={() => setActivePullout(undefined)} />
+							<PulloutCardExpandedBanner src={card.banner || card.icon} />
+							<PulloutCardExpandedHorizontal />
 
-		<PulloutContainer isOpen={pulloutIsOpen} onClick={togglePullout}>
+							{/* <PulloutCardExpandedTitle />
+
+							//show icon or optional banner image
+							<PulloutCardExpandedDateLine />
+							<PulloutCardExpandedBody /> */}
+						</PulloutCardExpandedWrapper>
+						
+					</>
+				)
+			})
+		}
+		<PulloutContainer isOpen={pulloutIsOpen} expandedisopen={activePullout !== undefined}>
 			<Icon isOpen={pulloutIsOpen} onClick={togglePullout}>
 				<AiOutlineDoubleRight />
 			</Icon>
@@ -35,8 +64,10 @@ const Pullout = ({ title, cards }) => {
 							<PulloutCardIcon src={card.icon}/>
 							<PulloutCardTitle>{card.title}</PulloutCardTitle>
 							<PulloutCardPreviewDesc>{card.previewDescription}</PulloutCardPreviewDesc>
-							<PulloutCardViewMoreBtn>
-								<FaArrowCircleRight />
+							<PulloutCardViewMoreBtn isactive={activePullout===card.index} onClick={() => {handleExpanded(card.index)}}>
+								{
+									activePullout===card.index ? <FaArrowCircleLeft style={{color: 'var(--hl)'}} /> : <FaArrowCircleRight />
+								}
 							</PulloutCardViewMoreBtn>
 						</PulloutCard>
 						</>)

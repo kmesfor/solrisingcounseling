@@ -1,20 +1,28 @@
 * {
+	--font: 'Encode Sans Expanded';
+
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	font-family: 'Encode Sans Expanded', sans-serif;
+	font-family: var(--font), sans-serif;
 }
 
-:root {
-	--highlightColor: #01bf71;
-}
+/* :root {} */
 
 .light-theme {
-	--bgColor: #ffffff;
-	--textColor: #726f6f;
+	--bg: #ffffff;
+	--fg: #726f6f;
+	--hl: #bf7c01;
 }
 
 .dark-theme {
-	--bgColor: #262626;
-	--textColor: #fff;
+	--bg: #262626;
+	--fg: #fff;
+	--hl: #01bf71;
+}
+
+@keyframes textTransition {
+	0% {color: var(--fg)}
+	50% {color: var(--hl)}
+	100% {color: var(--fg)}
 }

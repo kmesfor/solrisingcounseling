@@ -1,0 +1,264 @@
+{
+	"config": {
+		"dark_theme_background": "#262626",
+		"dark_theme_foreground": "#ffffff",
+		"dark_theme_highlight": "#01bf71",
+		"light_theme_background": "#ffffff",
+		"light_theme_foreground": "#726f6f",
+		"light_theme_highlight": "#bf7c01",
+
+		"pullout_title": "Updates",
+		"font": "Arial"
+	},
+	"pullout_entries": [
+		{
+			"icon": "./assets/images/svg-1.svg",
+			"banner": "./assets/images/banner-1.jpeg",
+			"title": "Pullout 1 title",
+			"preview_description": "Pullout 1 preview description",
+			"full_text": "Pullout 1 expanded text",
+			"date": 1626100189039
+		},
+		{
+			"icon": "./assets/images/svg-2.svg",
+			"banner": "./assets/images/banner-2.jpeg",
+			"title": "Pullout 2 title",
+			"preview_description": "Pullout 2 preview description",
+			"full_text": "Pullout 2 expanded text",
+			"date": 1626100218215
+		},
+		{
+			"icon": "./assets/images/svg-3.svg",
+			"banner": "./assets/images/banner-3.jpeg",
+			"title": "Pullout 3 title",
+			"preview_description": "Pullout 3 preview description",
+			"full_text": "Pullout 3 expanded text",
+			"date": 1626100218215
+		},
+		{
+			"icon": "./assets/images/svg-4.svg",
+			"banner": "./assets/images/banner-4.jpeg",
+			"title": "Pullout 4 title",
+			"preview_description": "Pullout 4 preview description",
+			"full_text": "Pullout 4 expanded text",
+			"date": 1626100218215
+		}
+	],
+	"sections": [
+		{
+			"type": "home",
+			"container_id": "home",
+			"asset": {
+				"type": "video/mp4",
+				"src": "./assets/videos/beach.mp4"
+			},
+			"main_content": "CATCHPHRASE",
+			"description": "DESCRIPTION",
+			"button": {
+				"text": "Sign Up",
+				"to_navbar_link": "signup"
+			}
+		},
+		{
+			"type": "info",
+			"uses_dark_theme": true,
+			"container_id": "about",
+			"display_image_first": false,
+			"top_line": "top line",
+			"headline": "headline",
+			"subtitle": "subtitle",
+			"button": {
+				"text": "Next",
+				"to_navbar_link": "discover"
+			},
+			"image": {
+				"src": "./assets/images/svg-3.svg"
+			}
+		},
+		{
+			"type": "info",
+			"uses_dark_theme": false,
+			"container_id": "discover",
+			"display_image_first": true,
+			"top_line": "top line",
+			"headline": "headline",
+			"subtitle": "subtitle",
+			"button": false,
+			"image_src": "./assets/images/svg-2.svg"
+		},
+		{
+			"type": "cards",
+			"uses_dark_theme": false,
+			"container_id": "services",
+			"headline": "Our Services",
+			"cards": [
+				{
+					"image_src": "./assets/images/svg-2.svg",
+					"title": "service 1",
+					"description": "service 1 description"
+				},
+				{
+					"image_src": "./assets/images/svg-1.svg",
+					"title": "service 2",
+					"description": "service 2 description"
+				},
+				{
+					"image_src": "./assets/images/svg-2.svg",
+					"title": "service 3",
+					"description": "service 3 description"
+				},
+				{
+					"image_src": "./assets/images/svg-2.svg",
+					"title": "service 4",
+					"description": "service 4 description"
+				}
+			]
+		}
+	],
+	"navbar": {
+		"icon_color": "#ffffff",
+		"logo_to_id": "home",
+		"logo_text": "SITENAME",
+		"links": [
+			{
+				"text": "About",
+				"to_id": "about"
+			},
+			{
+				"text": "Discover",
+				"to_id": "discover"
+			},
+			{
+				"text": "Services",
+				"to_id": "services"
+			},
+			{
+				"text": "Sign Up",
+				"to_id": "signup"
+			}
+		],
+		"button_text": "Sign In"
+	},
+	"mobile_sidebar": {
+		"links": [
+			{
+				"text": "About",
+				"to_id": "about"
+			},
+			{
+				"text": "Discover",
+				"to_id": "discover"
+			},
+			{
+				"text": "Services",
+				"to_id": "services"
+			},
+			{
+				"text": "Sign Up",
+				"to_id": "signup"
+			}
+		],
+		"button_text": "Sign In"
+	},
+	"footer": {
+		"background_color": "#101522",
+		"sections": [
+			{
+				"name": "About",
+				"links": [
+					{
+						"text": "Link 1",
+						"external_link": "https://google.com"
+					},
+					{
+						"text": "Link 2",
+						"external_link": "https://google.com"
+					},
+					{
+						"text": "Link 3",
+						"external_link": "https://google.com"
+					},
+					{
+						"text": "Link 4",
+						"external_link": "https://google.com"
+					}
+				]
+			},
+			{
+				"name": "Another Section",
+				"links": [
+					{
+						"text": "Link 1",
+						"external_link": "https://google.com"
+					},
+					{
+						"text": "Link 2",
+						"external_link": "https://google.com"
+					},
+					{
+						"text": "Link 3",
+						"external_link": "https://google.com"
+					},
+					{
+						"text": "Link 4",
+						"external_link": "https://google.com"
+					}
+				]
+			},
+			{
+				"name": "Another section 2",
+				"links": [
+					{
+						"text": "Link 1",
+						"external_link": "https://google.com"
+					},
+					{
+						"text": "Link 2",
+						"external_link": "https://google.com"
+					},
+					{
+						"text": "Link 3",
+						"external_link": "https://google.com"
+					},
+					{
+						"text": "Link 4",
+						"external_link": "https://google.com"
+					}
+				]
+			},
+			{
+				"name": "Another section 3",
+				"links": [
+					{
+						"text": "Link 1",
+						"external_link": "https://google.com"
+					},
+					{
+						"text": "Link 2",
+						"external_link": "https://google.com"
+					},
+					{
+						"text": "Link 3",
+						"external_link": "https://google.com"
+					},
+					{
+						"text": "Link 4",
+						"external_link": "https://google.com"
+					}
+				]
+			}
+		],
+		"social_media": {
+			"logo_text": "Social Logo",
+			"website_rights": "website rights",
+			"links": {
+				"facebook": "www.facebook.com",
+				"instagram": "www.instagram.com",
+				"youtube": "www.youtube.com",
+				"twitter": "www.twitter.com",
+				"linkedin": "www.linkedin.com"
+			}
+		}
+	},
+	"is_in_maintenance": false
+}

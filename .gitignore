@@ -13,6 +13,8 @@
 /build
 
 # misc
+/api/secrets.json
+/api-assets
 .DS_Store
 .env.local
 .env.development.local

@@ -59,7 +59,8 @@ export const Form = styled.form`
 	z-index: 1;
 	display: grid;
 	margin: 0 auto;
-	padding: 80px 32px;
+	padding: 60px 32px;
+	padding-bottom: 15px;
 	border-radius: 4px;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 
@@ -68,11 +69,24 @@ export const Form = styled.form`
 	}
 `
 export const FormH1 = styled.h1`
-	margin-bottom: 40px;
+	margin-bottom: 20px;
+	margin-top: 0px;
 	color: #fff;
-	font-size: 20px;
+	font-size: 24px;
 	font-weight: 400;
 	text-align: center;
+`
+export const FormLink = styled(Link)`
+	text-align: center;
+	font-size: 16px;
+	font-weight: 400;
+	text-decoration: none;
+	color: #fff;
+	margin: 20px;
+
+	&:hover {
+		color: #01bf71;
+	}
 `
 
 export const FormLabel = styled.label`
@@ -103,4 +117,18 @@ export const Text = styled.span`
 	margin-top: 24px;
 	color: #fff;
 	font-size: 14px;
+`
+
+export const FormError = styled.h3`
+	background: #f57c64;
+	font-size: 12px;
+	border: none;
+	border-radius: 4px;
+	color: #fff;
+	text-align: center;
+	margin-bottom: 20px;
+	position: relative;
+	opacity: ${({ isActive }) => (isActive ? '100%' : '0')};
+	padding: ${({ isActive }) => (isActive ? '16px' : '0')};
+	transition: 0.8s all ease;
 `

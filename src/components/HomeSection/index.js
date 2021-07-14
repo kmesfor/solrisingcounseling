@@ -1,27 +1,27 @@
 import React, { useState } from 'react'
 import Video from '../../videos/beach.mp4'
-import { HeroContainer, HeroBg, VideoBg, HeroContent, HeroH1, HeroP, HeroBtnWrapper, ArrowForward, ArrowRight } from './HeroElements'
+import { HomeContainer, HomeBg, VideoBg, HomeContent, HomeH1, HomeP, HomeBtnWrapper, ArrowForward, ArrowRight } from './HomeElements'
 import { Button } from '../ButtonElements'
 
-const HeroSection = () => {
+const HomeSection = () => {
 	const [hover, setHover] = useState(false)
 
 	const onHover = () => setHover(!hover)
 
 	return (
-		<HeroContainer id='home'>
-			<HeroBg>
+		<HomeContainer id='home'>
+			<HomeBg>
 				<VideoBg autoPlay loop muted src={Video} type='video/mp4' />
-			</HeroBg>
-			<HeroContent>
-				<HeroH1>CATCHPHRASE</HeroH1>
-				<HeroP>DESCRIPTION</HeroP>
-				<HeroBtnWrapper>
+			</HomeBg>
+			<HomeContent>
+				<HomeH1>CATCHPHRASE</HomeH1>
+				<HomeP>DESCRIPTION</HomeP>
+				<HomeBtnWrapper>
 					<Button to='signup' onMouseEnter={onHover} onMouseLeave={onHover} primary='true' dark='true' smooth={true} duration={500} spy={true} exact='true' offset={-80}>Get started {hover ? <ArrowForward /> : <ArrowRight />}</Button>
-				</HeroBtnWrapper>
-			</HeroContent>
-		</HeroContainer>
+				</HomeBtnWrapper>
+			</HomeContent>
+		</HomeContainer>
 	)
 }
 
-export default HeroSection
+export default HomeSection
