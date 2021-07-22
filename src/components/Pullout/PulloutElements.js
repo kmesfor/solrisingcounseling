@@ -225,6 +225,7 @@ export const PulloutCardExpandedBanner = styled.img`
 	width: 100%;
 	height: auto;
 	max-height: 30vh;
+	flex: 50%;
 `
 
 export const PulloutCardExpandedHorizontal = styled.hr`

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FaArrowCircleRight, FaArrowCircleLeft } from 'react-icons/fa'
 import { AiOutlineDoubleRight } from 'react-icons/ai'
 import { PulloutContainer, Icon, CloseIcon, PulloutWrapper, PulloutTitle, PulloutCard, PulloutCardIcon, PulloutCardTitle, PulloutCardPreviewDesc, PulloutCardViewMoreBtn, PulloutCardExpandedWrapper, PulloutCardExpandedCloseIcon, PulloutCardExpandedBanner, PulloutCardExpandedHorizontal } from './PulloutElements'
@@ -63,7 +63,7 @@ const Pullout = ({ title, cards }) => {
 						<PulloutCard>
 							<PulloutCardIcon src={card.icon}/>
 							<PulloutCardTitle>{card.title}</PulloutCardTitle>
-							<PulloutCardPreviewDesc>{card.previewDescription}</PulloutCardPreviewDesc>
+							<PulloutCardPreviewDesc>{card.preview_description}</PulloutCardPreviewDesc>
 							<PulloutCardViewMoreBtn isactive={activePullout===card.index} onClick={() => {handleExpanded(card.index)}}>
 								{
 									activePullout===card.index ? <FaArrowCircleLeft style={{color: 'var(--hl)'}} /> : <FaArrowCircleRight />

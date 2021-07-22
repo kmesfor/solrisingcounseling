@@ -1,24 +1,38 @@
 * {
-	--font: 'Encode Sans Expanded';
 
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	font-family: var(--font), sans-serif;
 }
 
-/* :root {} */
+:root {
+	--font: 'Arial';
+	font-family: var(--font), 'Arial';
+	
+	--light-theme-bg: 255, 255, 255;
+	--light-theme-fg: 114, 111, 111;
+	--light-theme-hl: 191, 124, 1;
+	--dark-theme-bg: 38, 38, 38;
+	--dark-theme-fg: 255, 255, 255;
+	--dark-theme-hl: 1, 191, 113;
+}
 
 .light-theme {
-	--bg: #ffffff;
-	--fg: #726f6f;
-	--hl: #bf7c01;
+	--bg: rgba(var(--light-theme-bg), 1);
+	--fg: rgba(var(--light-theme-fg), 1);
+	--hl: rgba(var(--light-theme-hl), 1);
+	--bg-no-rgba: var(--light-theme-bg);
+	--fg-no-rgba: var(--light-theme-fg);
+	--hl-no-rgba: var(--light-theme-hl);
 }
 
 .dark-theme {
-	--bg: #262626;
-	--fg: #fff;
-	--hl: #01bf71;
+	--bg: rgba(var(--dark-theme-bg), 1);
+	--fg: rgba(var(--dark-theme-fg), 1);
+	--hl: rgba(var(--dark-theme-hl), 1);
+	--bg-no-rgba: var(--dark-theme-bg);
+	--fg-no-rgba: var(--dark-theme-fg);
+	--hl-no-rgba: var(--dark-theme-hl);
 }
 
 @keyframes textTransition {

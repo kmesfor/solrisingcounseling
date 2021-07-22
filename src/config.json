@@ -3,7 +3,6 @@
 		"BASE": "http://localhost:5001/api",
 		"LOGIN": "/login",
 		"ASSETS": "/assets",
-		"ALL_ASSETS": "/all_assets",
-		"GET_CONFIG": "/config"
+		"CONFIG": "/config"
 	}
 }
