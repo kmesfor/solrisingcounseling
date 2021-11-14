@@ -45,6 +45,21 @@ app.get('/api/config', (req, res) => {
 	}
 })
 
+app.post('/api/config', (req, res) => {
+	console.log(req.body)
+
+	if (!req.body.auth) return res.send({statusCode: 401, message: 'Missing auth credentials'})
+	if (!req.body.data) return res.send({statusCode: 401, message: 'Missing data'})
+	if (req.body.auth !== AUTH_SECRET) return res.send({statusCode: 401, message: 'Invalid auth credentials'})
+	try {
+		fs.writeFileSync(path.resolve(ASSETS_STORAGE_PATH + '/site_data.json'), res.body.data)
+	} catch (err) {
+		console.log(err)
+		res.send({statusCode: 500, message: 'Internal server error: ' + err})
+	}
+	return res.send({statusCode: 200, message: 'OK'})
+})
+
 app.get('/api/assets/:assetFileName', (req, res) => {
 	if (!req.params.assetFileName) return res.send({statusCode: 401, message: 'Invalid request'})
 	try {

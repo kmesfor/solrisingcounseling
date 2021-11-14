@@ -3,7 +3,7 @@ import Home from './pages'
 import AdminSignIn from './pages/admin-signin'
 import Admin from './pages/admin'
 import ThemeToggle from './components/ThemeToggle'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import React, {useState, useEffect} from 'react'
 import config from './config.json'
 import loadSiteData from './loadSiteData'
@@ -18,32 +18,32 @@ const siteStatuses = {
 function App() {
 	
 
-	useEffect(() => {
+	useEffect(async () => {
 		if(siteData === undefined) {
-			getSiteData()
+			await handleSiteData(await getSiteData())
 		}
 	}, [])
 
+	async function handleSiteData(siteData) {
+		if (siteData.statusCode === 200 && siteData.message === 'OK') {
+			if (siteData.data.is_in_maintenance) {
+				setSiteStatus(siteStatuses.inMaintenance)
+			} else {
+				setSiteStatus(siteStatuses.active)
+				await loadSiteData(siteData.data)
+				setSiteData(siteData.data)
+			}
+		} else {
+			setSiteStatus(siteStatuses.failed)
+			alert(siteData.message)
+		}
+	}
 	async function getSiteData() {
 		try {
 			let result = await fetch(config.API.BASE + config.API.CONFIG, {
 				method: 'GET',
 			})
-			result = await result.json()
-			console.log(result)
-			if (result.statusCode === 200 && result.message === 'OK') {
-				if (result.data.is_in_maintenance) {
-					setSiteStatus(siteStatuses.inMaintenance)
-				} else {
-					setSiteStatus(siteStatuses.active)
-					loadSiteData(result.data)
-					setSiteData(result.data)
-				}
-		
-			} else {
-				setSiteStatus(siteStatuses.failed)
-				alert(result.message)
-			}
+			return await result.json()
 		} catch (err) {
 			setSiteStatus(siteStatuses.failed)
 		}
@@ -74,8 +74,9 @@ function App() {
 						<AdminSignIn siteData={siteData} />
 					</Route>
 					<Route path='/admin' exact>
-						<Admin siteData={siteData} />
+						<Admin siteData={siteData} getSiteData={getSiteData} setSiteData={setSiteData} />
 					</Route>
+					<Redirect to='/' />
 				</Switch>
 			</Router>
 			<ThemeToggle/>

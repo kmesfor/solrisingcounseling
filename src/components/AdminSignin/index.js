@@ -15,7 +15,7 @@ const AdminSignIn = () => {
 	async function handleSubmit(event) {
 		event.preventDefault()
 		try {
-			const res = await fetch(api_routes.BASE + api_routes.LOGIN, {
+			await fetch(api_routes.BASE + api_routes.LOGIN, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

@@ -12,6 +12,10 @@
 //TODO: use navbar data for mobile sidebar section
 //TODO: use sitedata.config.is_in_maintenance
 // instead of sitedata.is_in_maintenance
+//TODO: implement parse()
+
+//TODO: a field-specific canDelete will
+// override a section-specific canDeleteFields
 export default {
 	assets: {
 		name: 'Asset Manager',
@@ -38,12 +42,6 @@ export default {
 			{
 				name: 'Dark Theme',
 				options: [
-					{
-						name: 'Is In Maintenance?',
-						defaultValue: false,
-						type: 'boolean',
-						reference: 'config/is_in_maintenance'
-					},
 					{
 						name: 'Dark Theme Background (Format: r, g, b)',
 						defaultValue: '38, 38, 38',
@@ -109,6 +107,12 @@ export default {
 				name: 'Other',
 				options: [
 					{
+						name: 'Is In Maintenance?',
+						defaultValue: false,
+						type: 'boolean',
+						reference: 'config/is_in_maintenance'
+					},
+					{
 						name: 'Pullout Title',
 						defaultValue: 'Pullout Title',
 						type: 'text',
@@ -130,7 +134,6 @@ export default {
 		canCreateFields: true,
 		canDeleteFields: true,
 		fieldTemplateOptions: {
-			//TODO: finish inputting pullout template data
 			'New Pullout Entry': [
 				{
 					name: 'Title',
@@ -146,11 +149,38 @@ export default {
 					reference: 'pullout_entries/${index}/preview_description'
 				},
 				{
-					name: 'Image',
+					name: 'Full Text',
 					defaultValue: null,
-					type: 'fileselect',
-					acceptedFileType: '.png, .jpg, .jpeg',
-					reference: 'pullout_entries/${index}/image'
+					type: 'text',
+					reference: 'pullout_entries/${index}/full_text'
+				},
+				{
+					name: 'Publish Date (MM/DD/YYYY)',
+					defaultValue: Date.now(),
+					type: 'text',
+					validate: (input) => {
+						return (input.length >= 0 && input.replaceAll('/^(((0[1-9]|[12]\\d|3[01])\\/(0[13578]|1[02])\\/((19|[2-9]\\d)\\d{2}))|((0[1-9]|[12]\\d|30)\\/(0[13456789]|1[012])\\/((19|[2-9]\\d)\\d{2}))|((0[1-9]|1\\d|2[0-8])\\/02\\/((19|[2-9]\\d)\\d{2}))|(29\\/02\\/((1[6-9]|[2-9]\\d)(0[48]|[2468][048]|[13579][26])|(([1][26]|[2468][048]|[3579][26])00))))$/g', '').length === 0)
+					},
+					parse: (input) => {
+						return new Date(input).getTime()
+					},
+					reference: 'pullout_entries/${index}/publish_date'
+				},
+				{
+					name: 'Icon',
+					defaultValue: null,
+					type: 'dropdown',
+					options: [],
+					fillDropdownWithAssets: true,
+					reference: 'pullout_entries/${index}/icon'
+				},
+				{
+					name: 'Banner',
+					defaultValue: null,
+					type: 'dropdown',
+					options: [],
+					fillDropdownWithAssets: true,
+					reference: 'pullout_entries/${index}/banner'
 				}
 			]
 		}
@@ -328,7 +358,13 @@ export default {
 					name: 'Description',
 					defaultValue: null,
 					type: 'text',
-					reference: 'cards/${index}/title'
+					reference: 'cards/${index}/description'
+				},
+				{
+					name: 'Parent ID',
+					defaultValue: null,
+					type: 'text',
+					reference: 'cards/${index}/parent_id'
 				}
 			]
 		}
@@ -372,7 +408,8 @@ export default {
 						type: 'text',
 						reference: 'navbar/sign_in_button_text'
 					}
-				]
+				],
+				canDelete: false
 			}
 		],
 		canCreateFields: true,
@@ -400,7 +437,125 @@ export default {
 			]
 		}
 	},
-	footer: {},
-	social_media: {}
-
+	footer: {
+		name: 'Footer',
+		fields: [
+			{
+				name: 'Footer Options',
+				options: [
+					{
+						name: 'Dark Theme Background Color (Format: r, g, b)',
+						defaultValue: '16, 21, 34',
+						type: 'text',
+						validate: (input) => {
+							return (input.exec('^(?:(?:^|,\\s*)([01]?\\d\\d?|2[0-4]\\d|25[0-5])){3}$').length === 3)
+						},
+						reference: 'footer/dark_theme_bg'
+					},
+					{
+						name: 'Light Theme Background Color (Format: r, g, b)',
+						defaultValue: '16, 21, 34',
+						type: 'text',
+						validate: (input) => {
+							return (input.exec('^(?:(?:^|,\\s*)([01]?\\d\\d?|2[0-4]\\d|25[0-5])){3}$').length === 3)
+						},
+						reference: 'footer/light_theme_bg'
+					}
+				],
+				canDelete: false
+			}
+		],
+		canCreateFields: true,
+		canDeleteFields: true,
+		fieldTemplateOptions: {
+			'New Footer Section': [
+				{
+					name: 'Title',
+					defaultValue: null,
+					type: 'text',
+					reference: 'footer/sections/${index}/title'
+				},
+				{
+					name: 'ID',
+					defaultValue: null,
+					type: 'text',
+					reference: 'footer/sections/${index}/id'
+				}
+			],
+			'New Footer Link': [
+				{
+					name: 'Parent ID',
+					defaultValue: null,
+					type: 'text',
+					reference: 'footer/links/${index}/parent_id'
+				},
+				{
+					name: 'Text',
+					defaultValue: null,
+					type: 'text',
+					reference: 'footer/links/${index}/text'
+				},
+				{
+					name: 'Internal Link?',
+					defaultValue: true,
+					type: 'boolean',
+					reference: 'footer/links/${index}/internal_link'
+				},
+				{
+					name: 'Link Route',
+					defaultValue: null,
+					type: 'text',
+					reference: 'footer/links/${index}/link_route'
+				}
+			]
+		}
+	},
+	social_media: {
+		name: 'Social Media',
+		fields: [
+			{
+				name: 'Social Media Options',
+				options: [
+					{
+						name: 'Logo Text',
+						defaultValue: null,
+						type: 'text',
+						reference: 'social_media/logo_text'
+					},
+					{
+						name: 'Website Rights',
+						defaultValue: null,
+						type: 'text',
+						reference: 'social_media/website_rights'
+					}
+				],
+				canDelete: false
+			}
+		],
+		canCreateFields: true,
+		canDeleteFields: true,
+		fieldTemplateOptions: {
+			'New Social Link': [
+				{
+					name: 'Link',
+					defaultValue: null,
+					type: 'text',
+					reference: 'social_media/links/${index}/link'
+				},
+				{
+					name: 'Link Icon',
+					defaultValue: null,
+					type: 'dropdown',
+					options: [
+						'Facebook',
+						'Instagram',
+						'Youtube',
+						'Twitter',
+						'LinkedIn'
+					],
+					reference: 'social_media/links/${index}/icon'
+				}
+			]
+		}
+	}
 }

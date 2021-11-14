@@ -1,15 +1,18 @@
 import React, {useState} from 'react'
-import { ListWrapper, ListTitle, ListFieldWrapper, ListFieldText, ListFieldEditBtn, ListFieldDeleteBtn, ListFieldReorderBtn, ListDragContainer, ListFieldExpandedWrapper, ListFieldExpandedCloseBtn, ListFieldExpandedOptionWrapper, ListFieldExpandedTitle, ListFieldExpandedDropdown, ListFieldExpandedDropdownOption, ListFieldExpandedTextInput } from './ListElements'
+import { ListWrapper, ListTitle, ListFieldWrapper, ListFieldText, ListFieldEditBtn, ListFieldDeleteBtn, ListFieldReorderBtn, ListDragContainer, ListFieldExpandedWrapper, ListFieldExpandedCloseBtn, ListFieldExpandedOptionWrapper, ListFieldExpandedTitle, ListFieldExpandedDropdown, ListFieldExpandedDropdownOption, ListFieldExpandedTextInput, ListFieldExpandedFileSelect, ListTopBarWrapper } from './ListElements'
+//TODO: add new boolean type
+const ListElement = ({title, fields, canCreateFields, canDeleteFields, onupdate }) => {
 
-const ListElement = ({title, fields, onUpdate }) => {
+	//TODO: implement canCreateFields and canDeleteFields
+	//handle when validate returns false
 
 	const [fieldList, setFieldList] = useState(fields || [])
 
 	const [activeField, setActiveField] = useState(undefined)
 
-	const [activeFieldInputs, setActiveFieldInputs] = useState(undefined) //['a', 'b', 'c', 'd']
-
 	const [draggedItem, setDraggedItem] = useState(undefined)
+
+	const [isAvailable, setIsAvailable] = useState(false)
 
 	const onDragStart = (event, index) => {
 		setDraggedItem(fieldList[index])
@@ -30,9 +33,30 @@ const ListElement = ({title, fields, onUpdate }) => {
 		setDraggedItem(undefined)
 	}
 
+	const onInputUpdate = (event, activeField, option) => {
+		fieldList[activeField].options[fields[activeField].options.indexOf(option)].value = event.target.value
+		onupdate(fieldList)
+		console.log(checkIsAvailable())
+	}
+
+	const checkIsAvailable = () => {
+		if (activeField === undefined) return setIsAvailable(false)
+		for (let i = 0; i < fields[activeField].options.length; i++) {
+			let val = fields[activeField].options[i].value
+			if (val === null || val === '' || val === ' ') {
+				return setIsAvailable(false)
+			} else if (fields[activeField].options[i].validate && fields[activeField].options[i].validate(fields[activeField].options[i].value) === false) {
+				return setIsAvailable(false)
+			}
+		}
+		return setIsAvailable(true)
+	}
+
 	return (
 		<ListWrapper>
-			<ListTitle>{title}</ListTitle>
+			<ListTopBarWrapper>
+				<ListTitle>{title}</ListTitle>
+			</ListTopBarWrapper>
 			{
 				fieldList.map((field, index) => {
 					return (
@@ -51,15 +75,32 @@ const ListElement = ({title, fields, onUpdate }) => {
 						</ListFieldWrapper>
 						<ListFieldExpandedWrapper isopen={activeField === index}>
 							<ListFieldExpandedCloseBtn isopen={activeField === index} onClick={() => setActiveField(undefined)}/>
+							{/* <ListFieldExpandedConfirmBtn isopen={activeField === index} isavailable={isAvailable}>
+
+
+									todo: get rid of save button from individual portions make it main instead,
+									portions autosave just check if the entire has changed from before then save/unsave
+								
+								<ListFieldExpandedConfirmBtnIcon />
+							</ListFieldExpandedConfirmBtn> */}
+											{/* <ListFieldExpandedCancelBtn /> */}
+											{/* /*validate={() => {
+												for (let i = 0; i < field.options.length; i++) {
+													if (field.options[i].validate() === false) return false
+													else continue
+													//if validate === false (not undefined or true) then show a banner w/ the names of unfilled ones
+												}
+												return true
+											}} isfilled={fieldList[activeField].map((input) => input.value !== null).length === field.options.length} */}
 							{
 								field.options.map(option => {
 									return (
 										<ListFieldExpandedOptionWrapper>
 											<ListFieldExpandedTitle>{option.name}</ListFieldExpandedTitle>
 											{
-												option.isDropdown ?
-													<ListFieldExpandedDropdown>
-														<ListFieldExpandedDropdownOption value=''>Select an option</ListFieldExpandedDropdownOption>
+												option.type === 'dropdown' ?
+													<ListFieldExpandedDropdown onInput={(e) => onInputUpdate(e, activeField, option)}>
+														<ListFieldExpandedDropdownOption value='' >Select an option</ListFieldExpandedDropdownOption>
 														{
 															option.options.map(option => {
 																return (
@@ -68,17 +109,13 @@ const ListElement = ({title, fields, onUpdate }) => {
 															})
 														}
 													</ListFieldExpandedDropdown>
-													:<ListFieldExpandedTextInput suggestions={option.suggestions} />
+												: option.type === 'text' ? 
+													<ListFieldExpandedTextInput onInput={(e) => onInputUpdate(e, activeField, option)}/>
+												: option.type === 'fileselect' ? 
+													<ListFieldExpandedFileSelect type='file' accept={option.acceptedFileType} onInput={(e) => onInputUpdate(e, activeField, option)} />
+												:
+													<h1>Error: Invalid input component</h1>
 											}
-											{/* <ListFieldExpandedConfirmBtn validate={() => {
-												for (let i = 0; i < field.options.length; i++) {
-													if (field.options[i].validate() === false) return false
-													else continue
-													//if validate === false (not undefined or true) then show a banner w/ the names of unfilled ones
-												}
-												return true
-											}} isfilled={activeFieldInputs.filter((input) => input !== undefined).length === field.options.length}/>
-											<ListFieldExpandedCancelBtn /> */}
 										</ListFieldExpandedOptionWrapper>
 									)
 								})

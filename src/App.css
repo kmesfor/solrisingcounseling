@@ -3,6 +3,8 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+
+	//TODO: Add a --media-width-first and --media-width-second css var for media queries for width
 }
 
 :root {

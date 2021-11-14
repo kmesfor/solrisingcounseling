@@ -43,8 +43,6 @@ const Home = ({siteData}) => {
 			<InfoSection {...homeObjThree}/>
 			<Footer />
 			<ImageAsset name='banner-1.jpeg' onClick={console.log('hello from imageasset')} />
-			<img src={config.API.BASE + config.API.ASSETS + '/banner-1.jpeg'} />
-			<img src='http://localhost:5001/api/assets/banner-1.jpeg'></img>
 		</>
 	)
 }

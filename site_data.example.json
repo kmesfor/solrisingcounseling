@@ -1,9 +1,6 @@
 {
 	"assets": {
-		"icon_svg": {
-			"name": "a.svg",
-			"file_type": "image/png"
-		},
+		"icon_svg": "a.svg",
 		"banner_svg": "random234823483248234.jpeg",
 		"svg_2": "svg23248234234random.svg",
 		"banner_2": "327d43g3434.jpeg",
@@ -14,13 +11,13 @@
 		"beach_vid": "beach.mp4"
 	},
 	"config": {
-		"dark_theme_background": "38, 38, 38",
-		"dark_theme_foreground": "255, 255, 255",
-		"dark_theme_highlight": "1, 191, 113",
-		"light_theme_background": "255, 255, 255",
-		"light_theme_foreground": "114, 111, 111",
-		"light_theme_highlight": "191, 124, 1",
-
+		"dark_theme_bg": "38, 38, 38",
+		"dark_theme_fg": "255, 255, 255",
+		"dark_theme_hl": "1, 191, 113",
+		"light_theme_bg": "255, 255, 255",
+		"light_theme_fg": "114, 111, 111",
+		"light_theme_hl": "191, 124, 1",
+		"is_in_maintenance": false,
 		"pullout_title": "Updates",
 		"font": "Encode Sans Expanded"
 	},
@@ -31,8 +28,7 @@
 			"title": "Pullout 1 title",
 			"preview_description": "Pullout 1 preview description",
 			"full_text": "Pullout 1 expanded text",
-			"date": 1626100189039,
-			"index": 0
+			"publish_date": 1626100189039
 		},
 		{
 			"icon": "svg_2",
@@ -40,8 +36,7 @@
 			"title": "Pullout 2 title",
 			"preview_description": "Pullout 2 preview description",
 			"full_text": "Pullout 2 expanded text",
-			"date": 1626100218215,
-			"index": 1
+			"publish_date": 1626100218215
 		},
 		{
 			"icon": "svg_3",
@@ -49,8 +44,7 @@
 			"title": "Pullout 3 title",
 			"preview_description": "Pullout 3 preview description",
 			"full_text": "Pullout 3 expanded text",
-			"date": 1626100218215,
-			"index": 2
+			"publish_date": 1626100218215
 		},
 		{
 			"icon": "svg_4",
@@ -58,244 +52,182 @@
 			"title": "Pullout 4 title",
 			"preview_description": "Pullout 4 preview description",
 			"full_text": "Pullout 4 expanded text",
-			"date": 1626100218215,
-			"index": 3
+			"publish_date": 1626100218215
 		}
 	],
 	"sections": [
 		{
 			"type": "home",
 			"container_id": "home",
-			"asset": {
-				"type": "video",
-				"src": "beach_vid"
-			},
+			"asset": "beach_vid",
+			"asset_type": "video",
 			"main_content": "CATCHPHRASE",
 			"description": "DESCRIPTION",
-			"button": {
-				"text": "Sign Up",
-				"to_navbar_link": "signup"
-			}
+			"button_visible": true,
+			"button_text": "text",
+			"button_navbar_link": "signup"
 		},
 		{
 			"type": "info",
 			"uses_dark_theme": true,
 			"container_id": "about",
 			"display_image_first": false,
+			"image": "svg_3",
 			"top_line": "top line",
 			"headline": "headline",
 			"subtitle": "subtitle",
-			"button": {
-				"text": "Next",
-				"to_navbar_link": "discover"
-			},
-			"image": {
-				"src": "svg_3"
-			}
+			"button_visible": true,
+			"button_text": "text",
+			"button_navbar_link": "signup"
 		},
 		{
 			"type": "info",
 			"uses_dark_theme": false,
 			"container_id": "discover",
 			"display_image_first": true,
+			"image": "svg_2",
 			"top_line": "top line",
 			"headline": "headline",
 			"subtitle": "subtitle",
-			"button": false,
-			"image_src": "svg_2"
+			"button_visible": true,
+			"button_text": "text",
+			"button_navbar_link": "signup"
 		},
 		{
 			"type": "cards",
 			"uses_dark_theme": false,
 			"container_id": "services",
 			"headline": "Our Services",
-			"cards": [
-				{
-					"image_src": "svg_2",
-					"title": "service 1",
-					"description": "service 1 description"
-				},
-				{
-					"image_src": "svg_1",
-					"title": "service 2",
-					"description": "service 2 description"
-				},
-				{
-					"image_src": "svg_2",
-					"title": "service 3",
-					"description": "service 3 description"
-				},
-				{
-					"image_src": "svg_2",
-					"title": "service 4",
-					"description": "service 4 description"
-				}
-			]
+			"parent_link_id": "parent1"
+		}
+	],
+	"cards": [
+		{
+			"image": "svg_2",
+			"title": "Title",
+			"description": "description",
+			"parent_id": "parent1"
+		},
+		{
+			"image": "svg_2",
+			"title": "Title",
+			"description": "description",
+			"parent_id": "parent1"
+		},
+		{
+			"image": "svg_1",
+			"title": "Title",
+			"description": "description",
+			"parent_id": "parent1"
+		},
+		{
+			"image": "svg_2",
+			"title": "Title",
+			"description": "description",
+			"parent_id": "parent1"
+		},
+		{
+			"image": "svg_1",
+			"title": "Title",
+			"description": "description",
+			"parent_id": "parent1"
 		}
 	],
 	"navbar": {
-		"icon_color": "#ffffff",
-		"logo_to_id": "home",
+		"icon_color": "38 38 38",
+		"logo_navbar_link": "home",
 		"logo_text": "SITENAME",
+		"show_sign_in_button": true,
+		"sign_in_button_text": "Admin",
 		"links": [
 			{
 				"text": "About",
 				"internal_link": true,
-				"to": "about"
+				"link_route": "about"
 			},
 			{
 				"text": "Discover",
 				"internal_link": true,
-				"to": "discover"
+				"link_route": "discover"
 			},
 			{
 				"text": "Services",
 				"internal_link": true,
-				"to": "services"
+				"link_route": "services"
 			},
 			{
 				"text": "Sign Up",
 				"internal_link": true,
-				"to": "signup"
+				"link_route": "signup"
 			}
-		],
-		"button_text": "Sign In"
-	},
-	"mobile_sidebar": {
-		"links": [
-			{
-				"text": "About",
-				"internal_link": true,
-				"to": "about"
-			},
-			{
-				"text": "Discover",
-				"internal_link": true,
-				"to": "discover"
-			},
-			{
-				"text": "Services",
-				"internal_link": true,
-				"to": "services"
-			},
-			{
-				"text": "Sign Up",
-				"internal_link": true,
-				"to": "signup"
-			}
-		],
-		"button_text": "Sign In"
+		]
 	},
 	"footer": {
-		"background_color": "#101522",
+		"dark_theme_bg": "16, 21, 34",
+		"light_theme_bg": "16, 21, 34",
 		"sections": [
 			{
-				"name": "About",
-				"links": [
-					{
-						"text": "Link 1",
-						"internal_link": false,
-						"to": "https://google.com"
-					},
-					{
-						"text": "Link 2",
-						"internal_link": false,
-						"to": "https://google.com"
-					},
-					{
-						"text": "Link 3",
-						"internal_link": false,
-						"to": "https://google.com"
-					},
-					{
-						"text": "Internal Link 1",
-						"internal_link": true,
-						"to": "about"
-					}
-				]
+				"title": "About",
+				"id": "section1"
 			},
 			{
-				"name": "Another Section",
-				"links": [
-					{
-						"text": "Link 1",
-						"internal_link": false,
-						"to": "https://google.com"
-					},
-					{
-						"text": "Link 2",
-						"internal_link": false,
-						"to": "https://google.com"
-					},
-					{
-						"text": "Internal Link 1",
-						"internal_link": true,
-						"to": "about"
-					}
-				]
+				"title": "Secondary Section",
+				"id": "section2"
 			},
 			{
-				"name": "Another section 2",
-				"links": [
-					{
-						"text": "Link 1",
-						"internal_link": false,
-						"to": "https://google.com"
-					},
-					{
-						"text": "Link 2",
-						"internal_link": false,
-						"to": "https://google.com"
-					},
-					{
-						"text": "Link 3",
-						"internal_link": false,
-						"to": "https://google.com"
-					},
-					{
-						"text": "Internal Link 1",
-						"internal_link": true,
-						"to": "about"
-					}
-				]
+				"title": "3 Section",
+				"id": "section3"
 			},
 			{
-				"name": "Another section 3",
-				"links": [
-					{
-						"text": "Link 1",
-						"internal_link": false,
-						"to": "https://google.com"
-					},
-					{
-						"text": "Link 2",
-						"internal_link": false,
-						"to": "https://google.com"
-					},
-					{
-						"text": "Link 3",
-						"internal_link": false,
-						"to": "https://google.com"
-					},
-					{
-						"text": "Internal Link 1",
-						"internal_link": true,
-						"to": "about"
-					}
-				]
+				"title": "4 Section",
+				"id": "section4"
 			}
 		],
-		"social_media": {
-			"logo_text": "Social Logo",
-			"website_rights": "website rights",
-			"links": {
-				"facebook": "www.facebook.com",
-				"instagram": "www.instagram.com",
-				"youtube": "www.youtube.com",
-				"twitter": "www.twitter.com",
-				"linkedin": "www.linkedin.com"
+		"links": [
+			{
+				"parent_id": "section1",
+				"text": "text",
+				"internal_link": false,
+				"link_route": "google.com"
+			},
+			{
+				"parent_id": "section2",
+				"text": "services",
+				"internal_link": true,
+				"link_route": "services"
+			},
+			{
+				"parent_id": "section3",
+				"text": "text",
+				"internal_link": false,
+				"link_route": "google.com"
 			}
-		}
+		]
 	},
-	"is_in_maintenance": false
+	"social_media": {
+		"logo_text": "Social Logo",
+		"website_rights": "website rights",
+		"links": [
+			{
+				"link": "https://facebook.com",
+				"icon": "Facebook"
+			},
+			{
+				"link": "https://instagram.com",
+				"icon": "Instagram"
+			},
+			{
+				"link": "https://youtube.com",
+				"icon": "Youtube"
+			},
+			{
+				"link": "https://twitter.com",
+				"icon": "Twitter"
+			},
+			{
+				"link": "https://linkedin.com",
+				"icon": "LinkedIn"
+			}
+		]
+	}
 }
