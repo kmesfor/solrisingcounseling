@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AdminPanelSaveBtn, AdminListWrapper } from './AdminPanelElements'
+import { AdminPanelSaveTitle, AdminWrapper, AdminListWrapper, AdminPanelSaveWrapper, AdminPanelSaveBtn, AdminPanelAuthInput } from './AdminPanelElements'
 import ListElement from '../List'
 import { convertFieldDataToSiteData } from './convertFieldDataToSiteData'
 
@@ -33,7 +33,7 @@ const fields = [
 				validate: (input) => {
 					return true
 				},
-				siteDataRef: 'pullout_entries/${index}/title'
+				siteDataRef: 'pullout_entries/${index}/image'
 			}
 		]
 	},
@@ -48,17 +48,20 @@ const AdminPanel = ({siteData, getSiteData, setSiteData, adminPanelConfig}) => {
 	}
 
 	return (
-		<div>
+		<AdminWrapper>
 			<h1>admin panel</h1>
-			<AdminPanelSaveBtn isactive={true} onClick={() => {saveSiteData(siteData)}} />
-			<input type='text' id='admin_panel_auth_secret' />
+			<AdminPanelSaveTitle>Save changes</AdminPanelSaveTitle>
+			<AdminPanelSaveWrapper>
+				<AdminPanelAuthInput type='text' id='admin_panel_auth_secret' defaultValue='Insert auth token' />
+				<AdminPanelSaveBtn isactive={true} onClick={() =>{saveSiteData(siteData)}}/>
+			</AdminPanelSaveWrapper>
 			<AdminListWrapper>
 				<ListElement title='list title' fields={fields} />
 				<ListElement title='list' fields={fields} />
 				<ListElement title='list title' fields={fields} />
 				<ListElement title='list title' fields={fields} />
 			</AdminListWrapper>
-		</div>
+		</AdminWrapper>
 	)
 }
 

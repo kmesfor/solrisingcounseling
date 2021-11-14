@@ -66,7 +66,7 @@ const adminPanelTemplate = {
 					name: 'Icon',
 					value: null,
 					type: 'dropdown',
-					options: `$$all_images_array`,
+					options: `$all_images_array`,
 					validate: (input, siteData) => {
 						return siteData.assets[input] !== undefined
 					}

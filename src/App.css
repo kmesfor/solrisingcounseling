@@ -17,6 +17,7 @@
 	--dark-theme-bg: 38, 38, 38;
 	--dark-theme-fg: 255, 255, 255;
 	--dark-theme-hl: 1, 191, 113;
+	--err: rgba(245, 124, 100, 1)
 }
 
 .light-theme {
