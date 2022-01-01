@@ -7,7 +7,6 @@ import Services from '../components/Services'
 import Footer from '../components/Footer'
 import MovementButton from '../components/MovementButtonElement.js'
 import Pullout from '../components/Pullout'
-import { homeObjOne, homeObjTwo, homeObjThree } from '../components/InfoSection/Data'
 import { AiOutlineUp } from 'react-icons/ai'
 import config from '../config.json'
 import ImageAsset from '../components/ImageAsset'
@@ -32,17 +31,29 @@ const Home = ({siteData}) => {
 	return (
 		<>
 			{/* TODO: if screen is less than 310px wide, warn that content may appear wrong (using banner) */}
-			<Sidebar id='sidebar' isOpen={sidebarIsOpen} toggle={toggleSidebar}/>
-			<Navbar toggle={toggleSidebar}/>
+			<Sidebar id='sidebar' sidebarData={siteData.navbar} isOpen={sidebarIsOpen} toggle={toggleSidebar}/>
+			<Navbar toggle={toggleSidebar} navbarData={siteData.navbar}/>
 			<MovementButton movementButtonIsVisible={movementButtonIsVisible} to='home' smooth={true} duration={500} spy={true} exact={1} offset={-80}><AiOutlineUp /></MovementButton>
-			<Pullout {...pulloutData}/>
-			<HomeSection id='home'/>
-			<InfoSection {...homeObjOne}/>
-			<InfoSection {...homeObjTwo}/>
-			<Services />
-			<InfoSection {...homeObjThree}/>
-			<Footer />
-			<ImageAsset name='banner-1.jpeg' onClick={console.log('hello from imageasset')} />
+			{/* <Pullout {...pulloutData}/> //TODO: reenable later when finished*/} 
+			{
+				siteData.sections.map(section => {
+					if (section.type === 'home') {
+						return <HomeSection sectionData={section} assets={siteData.assets} />
+					} else if (section.type === 'info') {
+						return <InfoSection sectionData={section} assets={siteData.assets} />
+					} else if (section.type === 'cards') {
+						return <Services sectionData={section} assets={siteData.assets} cards={siteData.cards.filter(card => card.parent_id === section.parent_link_id)} />
+					} else {
+						return null
+					}
+				})
+			}
+			<Footer footerData={siteData.footer} socialData={siteData.social_media}/>
+			{/* <HomeSection id='home' sectionData={siteData}/> */}
+			{/* <InfoSection {...homeObjOne}/> */}
+			{/* <InfoSection {...homeObjTwo}/> */}
+			{/* <Services /> */}
+			{/* <InfoSection {...homeObjThree}/> */}
 		</>
 	)
 }

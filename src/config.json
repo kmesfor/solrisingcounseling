@@ -3,6 +3,8 @@
 		"BASE": "http://localhost:5001/api",
 		"LOGIN": "/login",
 		"ASSETS": "/assets",
+		"CREATE_ASSET": "/create_asset",
+		"DELETE_ASSET": "/delete_asset",
 		"CONFIG": "/config"
 	}
 }

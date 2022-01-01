@@ -10,6 +10,17 @@ export default async function loadSiteData(siteData) {
 	root.setProperty('--dark-theme-fg', siteData.config.dark_theme_fg)
 	root.setProperty('--dark-theme-hl', siteData.config.dark_theme_hl)
 
+	root.setProperty('--dark-theme-bg-strong', siteData.config.dark_theme_bg_strong)
+	root.setProperty('--light-theme-bg-strong', siteData.config.light_theme_bg_strong)
+	root.setProperty('--dark-theme-footer-bg', siteData.config.dark_theme_footer_bg)
+	root.setProperty('--light-theme-footer-bg', siteData.config.light_theme_footer_bg)
+	root.setProperty('--err', `rgba(${siteData.config.err}, 1)`)
+
+
+	//no-rgba props
+
+
+
 	let assets = Object.keys(siteData.assets)
 	// TODO: do something here
 	for (let i = 0; i < assets.length; i++) {

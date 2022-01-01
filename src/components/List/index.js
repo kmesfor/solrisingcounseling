@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import { ListWrapper, ListTitle, ListFieldWrapper, ListFieldText, ListFieldEditBtn, ListFieldDeleteBtn, ListFieldReorderBtn, ListDragContainer, ListFieldExpandedWrapper, ListFieldExpandedCloseBtn, ListFieldExpandedOptionWrapper, ListFieldExpandedTitle, ListFieldExpandedDropdown, ListFieldExpandedDropdownOption, ListFieldExpandedTextInput, ListFieldExpandedFileSelect, ListTopBarWrapper } from './ListElements'
+import { ListWrapper, ListTitle, ListFieldWrapper, ListFieldText, ListFieldEditBtn, ListFieldDeleteBtn, ListFieldReorderBtn, ListDragContainer, ListFieldExpandedWrapper, ListFieldExpandedCloseBtn, ListFieldExpandedOptionWrapper, ListFieldExpandedTitle, ListFieldExpandedDropdown, ListFieldExpandedDropdownOption, ListFieldExpandedTextInput, ListFieldExpandedFileSelect, ListTopBarWrapper, ListAddBtn, ListAddBtnWrapper } from './ListElements'
 //TODO: add new boolean type
-const ListElement = ({title, fields, canCreateFields, canDeleteFields, onupdate }) => {
+const ListElement = ({title, fields, canCreateFields, canDeleteFields, onupdate, id }) => {
 
 	//TODO: implement canCreateFields and canDeleteFields
 	//handle when validate returns false
@@ -35,8 +35,9 @@ const ListElement = ({title, fields, canCreateFields, canDeleteFields, onupdate 
 
 	const onInputUpdate = (event, activeField, option) => {
 		fieldList[activeField].options[fields[activeField].options.indexOf(option)].value = event.target.value
-		onupdate(fieldList)
-		console.log(checkIsAvailable())
+		// onupdate(fieldList)
+		// console.log(checkIsAvailable())
+		console.log(fieldList)
 	}
 
 	const checkIsAvailable = () => {
@@ -53,7 +54,7 @@ const ListElement = ({title, fields, canCreateFields, canDeleteFields, onupdate 
 	}
 
 	return (
-		<ListWrapper>
+		<ListWrapper id={id}>
 			<ListTopBarWrapper>
 				<ListTitle>{title}</ListTitle>
 			</ListTopBarWrapper>
@@ -125,7 +126,15 @@ const ListElement = ({title, fields, canCreateFields, canDeleteFields, onupdate 
 					)
 				})
 			}
-			{/* <ListAddBtn /> */}
+			<ListAddBtnWrapper onClick={() => {
+				fieldList.push(fieldList[fieldList.length - 1])
+				fieldList[fieldList.length - 1].options.forEach(option => {
+					option.value = null
+				})
+				//not updating until edit button is pushed?
+			}}>
+				<ListAddBtn />
+			</ListAddBtnWrapper>
 		</ListWrapper>
 	)
 }

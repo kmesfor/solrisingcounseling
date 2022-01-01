@@ -1,0 +1,352 @@
+{
+	"assets": {
+		"icon_svg": "a.svg",
+		"banner_svg": "banner-1.jpeg",
+		"svg_1": "svg-1.svg",
+		"svg_2": "svg-2.svg",
+		"banner_2": "banner-2.jpeg",
+		"svg_3": "svg-3.svg",
+		"banner_3": "banner-3.jpeg",
+		"svg_4": "svg-4.svg",
+		"banner_4": "banner-1.jpeg",
+		"home_vid": "beach.mp4"
+	},
+	"config": {
+		"dark_theme_bg": "38, 38, 38",
+		"dark_theme_fg": "255, 255, 255",
+		"dark_theme_hl": "10, 191, 113",
+		"light_theme_bg": "255, 255, 255",
+		"light_theme_fg": "114, 111, 111",
+		"light_theme_hl": "191, 124, 1",
+		"dark_theme_bg_strong": "1, 6, 6",
+		"light_theme_bg_strong": "233, 247, 247",
+		"light_theme_footer_bg": "184, 37, 162",
+		"dark_theme_footer_bg": "16, 21, 34",
+		"err": "245, 124, 100",
+		"is_in_maintenance": false,
+		"pullout_title": "Updates",
+		"font": "Encode Sans Expanded"
+	},
+	"pullout_entries": [
+		{
+			"icon": "icon_svg",
+			"banner": "banner_svg",
+			"title": "Pullout 1 title",
+			"preview_description": "Pullout 1 preview description",
+			"full_text": "Pullout 1 expanded text",
+			"publish_date": 1626100189039
+		},
+		{
+			"icon": "svg_2",
+			"banner": "banner_2",
+			"title": "Pullout 2 title",
+			"preview_description": "Pullout 2 preview description",
+			"full_text": "Pullout 2 expanded text",
+			"publish_date": 1626100218215
+		},
+		{
+			"icon": "svg_3",
+			"banner": "banner_3",
+			"title": "Pullout 3 title",
+			"preview_description": "Pullout 3 preview description",
+			"full_text": "Pullout 3 expanded text",
+			"publish_date": 1626100218215
+		},
+		{
+			"icon": "svg_4",
+			"banner": "banner_4",
+			"title": "Pullout 4 title",
+			"preview_description": "Pullout 4 preview description",
+			"full_text": "Pullout 4 expanded text",
+			"publish_date": 1626100218215
+		}
+	],
+	"sections": [
+		{
+			"type": "home",
+			"container_id": "home",
+			"asset": "home_vid",
+			"asset_type": "video/mp4",
+			"main_content": "CATCHPHRASE",
+			"description": "DESCRIPTION",
+			"button_visible": true,
+			"button_text": "text",
+			"button_navbar_link": "signup"
+		},
+		{
+			"type": "info",
+			"uses_dark_theme": true,
+			"container_id": "about",
+			"display_image_first": false,
+			"image": "svg_3",
+			"top_line": "top line",
+			"headline": "headline",
+			"subtitle": "subtitle",
+			"button_visible": true,
+			"button_text": "text",
+			"button_navbar_link": "home"
+		},
+		{
+			"type": "info",
+			"uses_dark_theme": false,
+			"container_id": "discover",
+			"display_image_first": true,
+			"image": "svg_2",
+			"top_line": "top line",
+			"headline": "headline",
+			"subtitle": "subtitle",
+			"button_visible": true,
+			"button_text": "text",
+			"button_navbar_link": "signup"
+		},
+		{
+			"type": "cards",
+			"uses_dark_theme": false,
+			"container_id": "services",
+			"headline": "Our Services",
+			"parent_link_id": "parent1"
+		},
+		{
+			"type": "cards",
+			"uses_dark_theme": true,
+			"container_id": "services2",
+			"headline": "secondary",
+			"parent_link_id": "parent2"
+		}
+	],
+	"cards": [
+		{
+			"image": "svg_2",
+			"title": "Title",
+			"description": "description",
+			"extended_description": "Amet adipisicing ex anim consequat in ex tempor nisi reprehenderit.",
+			"parent_id": "parent1"
+		},
+		{
+			"image": "svg_2",
+			"title": "Title",
+			"description": "description",
+			"extended_description": "Est aliquip labore esse duis enim in laboris commodo id magna consequat minim sint.",
+			"parent_id": "parent1"
+		},
+		{
+			"image": "svg_1",
+			"title": "Title",
+			"description": "description",
+			"parent_id": "parent1"
+		},
+		{
+			"image": "svg_2",
+			"title": "Title",
+			"description": "description",
+			"parent_id": "parent1"
+		},
+		{
+			"image": "svg_1",
+			"title": "Title",
+			"description": "description",
+			"parent_id": "parent1"
+		},
+		{
+			"image": "svg_1",
+			"title": "Title",
+			"description": "description",
+			"parent_id": "parent1"
+		},
+		{
+			"image": "svg_2",
+			"title": "Title",
+			"description": "description",
+			"parent_id": "parent2"
+		},
+		{
+			"image": "svg_2",
+			"title": "Title",
+			"description": "description",
+			"parent_id": "parent2"
+		}
+	],
+	"navbar": {
+		"logo_navbar_link": "home",
+		"logo_text": "SITENAME",
+		"show_sign_in_button": true,
+		"sign_in_button_text": "Admin",
+		"links": [
+			{
+				"text": "About",
+				"internal_link": true,
+				"link_route": "about"
+			},
+			{
+				"text": "Discover",
+				"internal_link": true,
+				"link_route": "discover"
+			},
+			{
+				"text": "Services",
+				"internal_link": true,
+				"link_route": "services"
+			},
+			{
+				"text": "Sign Up",
+				"internal_link": true,
+				"link_route": "signup"
+			},
+			{
+				"text": "External Link",
+				"internal_link": false,
+				"link_route": "google.com"
+			}
+		]
+	},
+	"footer": {
+		"dark_theme_bg": "16, 21, 34",
+		"light_theme_bg": "16, 21, 34",
+		"sections": [
+			{
+				"title": "About",
+				"id": "section1"
+			},
+			{
+				"title": "Secondary Section",
+				"id": "section2"
+			},
+			{
+				"title": "3 Section",
+				"id": "section3"
+			},
+			{
+				"title": "4 Section",
+				"id": "section4"
+			}
+		],
+		"links": [
+			{
+				"parent_id": "section1",
+				"text": "text",
+				"internal_link": false,
+				"link_route": "google.com"
+			},
+			{
+				"parent_id": "section1",
+				"text": "text2",
+				"internal_link": false,
+				"link_route": "google.com"
+			},
+			{
+				"parent_id": "section1",
+				"text": "text3",
+				"internal_link": false,
+				"link_route": "google.com"
+			},
+			{
+				"parent_id": "section1",
+				"text": "text4",
+				"internal_link": false,
+				"link_route": "google.com"
+			},
+			{
+				"parent_id": "section2",
+				"text": "services",
+				"internal_link": true,
+				"link_route": "services"
+			},
+			{
+				"parent_id": "section2",
+				"text": "services2",
+				"internal_link": true,
+				"link_route": "services"
+			},
+			{
+				"parent_id": "section2",
+				"text": "services3",
+				"internal_link": true,
+				"link_route": "services"
+			},
+			{
+				"parent_id": "section2",
+				"text": "services4",
+				"internal_link": true,
+				"link_route": "services"
+			},
+			{
+				"parent_id": "section3",
+				"text": "text",
+				"internal_link": false,
+				"link_route": "google.com"
+			},
+			{
+				"parent_id": "section3",
+				"text": "text2",
+				"internal_link": false,
+				"link_route": "google.com"
+			},
+			{
+				"parent_id": "section3",
+				"text": "text3",
+				"internal_link": false,
+				"link_route": "google.com"
+			},
+			{
+				"parent_id": "section3",
+				"text": "text4",
+				"internal_link": false,
+				"link_route": "google.com"
+			},
+			{
+				"parent_id": "section4",
+				"text": "text",
+				"internal_link": false,
+				"link_route": "google.com"
+			},
+			{
+				"parent_id": "section4",
+				"text": "text2",
+				"internal_link": false,
+				"link_route": "google.com"
+			},
+			{
+				"parent_id": "section4",
+				"text": "text3",
+				"internal_link": false,
+				"link_route": "google.com"
+			},
+			{
+				"parent_id": "section4",
+				"text": "text4",
+				"internal_link": false,
+				"link_route": "google.com"
+			}
+		]
+	},
+	"social_media": {
+		"logo_text": "Home",
+		"website_rights": "site rights",
+		"links": [
+			{
+				"link": "https://facebook.com",
+				"icon": "Facebook"
+			},
+			{
+				"link": "https://instagram.com",
+				"icon": "Instagram"
+			},
+			{
+				"link": "https://youtube.com",
+				"icon": "Youtube"
+			},
+			{
+				"link": "https://twitter.com",
+				"icon": "Twitter"
+			},
+			{
+				"link": "https://linkedin.com",
+				"icon": "LinkedIn"
+			},
+			{
+				"link": "https://snapchat.com",
+				"icon": "Snapchat"
+			}
+		]
+	}
+}

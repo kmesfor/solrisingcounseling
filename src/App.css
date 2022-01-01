@@ -17,6 +17,10 @@
 	--dark-theme-bg: 38, 38, 38;
 	--dark-theme-fg: 255, 255, 255;
 	--dark-theme-hl: 1, 191, 113;
+	--dark-theme-bg-strong: 1, 6, 6;
+	--light-theme-bg-strong: 233, 247, 247;
+	--dark-theme-footer-bg: 16, 21, 34;
+	--light-theme-footer-bg: 184, 37, 162;
 	--err: rgba(245, 124, 100, 1)
 }
 
@@ -24,18 +28,26 @@
 	--bg: rgba(var(--light-theme-bg), 1);
 	--fg: rgba(var(--light-theme-fg), 1);
 	--hl: rgba(var(--light-theme-hl), 1);
+	--bg-str: rgba(var(--light-theme-bg-strong), 1);
+	--footer-bg: rgba(var(--light-theme-footer-bg), 1);
 	--bg-no-rgba: var(--light-theme-bg);
 	--fg-no-rgba: var(--light-theme-fg);
 	--hl-no-rgba: var(--light-theme-hl);
+	--bg-str-no-rgba: var(--light-theme-bg-strong);
+	--footer-bg-no-rgba: var(--light-theme-footer-bg);
 }
 
 .dark-theme {
 	--bg: rgba(var(--dark-theme-bg), 1);
 	--fg: rgba(var(--dark-theme-fg), 1);
 	--hl: rgba(var(--dark-theme-hl), 1);
+	--bg-str: rgba(var(--dark-theme-bg-strong), 1);
+	--footer-bg: rgba(var(--dark-theme-footer-bg), 1);
 	--bg-no-rgba: var(--dark-theme-bg);
 	--fg-no-rgba: var(--dark-theme-fg);
 	--hl-no-rgba: var(--dark-theme-hl);
+	--bg-str-no-rgba: var(--dark-theme-bg-strong);
+	--footer-bg-no-rgba: var(--dark-theme-footer-bg);
 }
 
 @keyframes textTransition {

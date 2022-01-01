@@ -1,8 +1,10 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link as LinkR } from 'react-router-dom'
+import { Link as LinkS } from 'react-scroll'
+
 
 export const FooterContainer = styled.footer`
-	background-color: #101522;
+	background-color: var(--footer-bg);
 `
 
 export const FooterWrap = styled.div`
@@ -40,7 +42,7 @@ export const FooterLinkItems = styled.div`
 	text-align: left;
 	width: 160px;
 	box-sizing: border-box;
-	color: #fff;
+	color: var(--fg);
 
 	@media screen and (max-width: 420px) {
 		margin: 0;
@@ -54,14 +56,26 @@ export const FooterLinkTitle = styled.h1`
 	margin-bottom: 16px;
 `
 
-export const FooterLink = styled(Link)`
-	color: #fff;
+export const FooterLinkExternal = styled(LinkR)`
+	color: var(--fg);
 	text-decoration: none;
 	margin-bottom: 0.5rem;
 	font-size: 14px;
 
 	&:hover {
-		color: #01bf71;
+		color: var(--hl);
+		transition: 0.3s ease out;
+	}
+`
+
+export const FooterLinkInternal = styled(LinkS)`
+	color: var(--fg);
+	text-decoration: none;
+	margin-bottom: 0.5rem;
+	font-size: 14px;
+
+	&:hover {
+		color: var(--hl);
 		transition: 0.3s ease out;
 	}
 `
@@ -82,8 +96,8 @@ export const SocialMediaWrap = styled.div`
 		flex-direction: column;
 	}
 `
-export const SocialLogo = styled(Link)`
-	color: #fff;
+export const SocialLogo = styled(LinkR)`
+	color: var(--fg);
 	justify-self: start;
 	cursor: pointer;
 	text-decoration: none;
@@ -93,13 +107,13 @@ export const SocialLogo = styled(Link)`
 	margin-bottom: 16px;
 	font-weight: bold;
 	&:hover {
-		color: #01bf71;
+		color: var(--hl);
 		transition: 0.3s ease out;
 	}
 `
 
 export const WebsiteRights = styled.small`
-	color: #fff;
+	color: var(--fg);
 	margin-bottom: 16px;
 `
 
@@ -111,11 +125,11 @@ export const SocialIcons = styled.div`
 `
 
 export const SocialIconLink = styled.a`
-	color: #fff;
+	color: var(--fg);
 	font-size: 24px;
 
 	&:hover {
-		color: #01bf71;
+		color: var(--hl);
 		transition: 0.3s ease out;
 	}
 `

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { HiOutlinePencil, HiOutlineTrash, HiOutlineDotsVertical } from 'react-icons/hi'
-import { FaTimes, FaRegSave } from 'react-icons/fa'
+import { FaTimes, FaRegSave, FaPlus } from 'react-icons/fa'
 
 export const ListWrapper = styled.div`
 	box-shadow: 0 1px 5px rgba(0,0,0,0.2);
@@ -237,6 +237,32 @@ export const ListSaveBtn = styled(FaRegSave)`
 		height: 4vw;
 	}
 	color: ${({isavailable}) => ((isavailable) ? 'var(--hl)' : 'rgba(var(--bg-no-rgba), 0.4)')};
+`
+
+export const ListAddBtn = styled(FaPlus)`
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	color: var(--bg);
+`
+
+export const ListAddBtnWrapper = styled.div`
+	position: relative;
+	width: 100%;
+	height: 60px;
+	cursor: pointer;
+	background: var(--hl);
+	font-size: 20px;
+	transition: all 0.2s ease-in-out;
+	border-radius: 10px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	&:hover ${ListAddBtn} {
+		color: var(--fg);
+	}
 `
 
 // export const ListFieldExpandedConfirmBtn = styled.div`

@@ -108,6 +108,10 @@ export const FormButton = styled.button`
 	color: var(--fg);
 	font-size: 20px;
 	cursor: pointer;
+	&:hover {
+		background: var(--fg);
+		color: var(--bg);
+	}
 `
 
 export const Text = styled.span`

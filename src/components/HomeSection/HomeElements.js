@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { MdKeyboardArrowRight, MdArrowForward } from 'react-icons/md'
 
 export const HomeContainer = styled.div`
-	background: #0c0c0c;
+	background: var(--bg-str);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -39,7 +39,7 @@ export const VideoBg = styled.video`
 	height: 100%;
 	-o-object-fit: cover;
 	object-fit: cover;
-	background: #232a34;
+	background: var(--bg-str);
 `
 
 export const HomeContent = styled.div`
@@ -53,7 +53,7 @@ export const HomeContent = styled.div`
 `
 
 export const HomeH1 = styled.h1`
-	color: #fff;
+	color: var(--fg);
 	font-size: 48px;
 	text-align: center;
 	animation-name: textTransition;
@@ -72,7 +72,7 @@ export const HomeH1 = styled.h1`
 
 export const HomeP = styled.p`
 	margin-top: 24px;
-	color: #fff;
+	color: var(--fg);
 	font-size: 24px;
 	text-align: center;
 	max-width: 600px;

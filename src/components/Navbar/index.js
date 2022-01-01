@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import { FaBars } from 'react-icons/fa'
 import { IconContext } from 'react-icons/lib'
-import { Nav, NavbarContainer, NavLogo, MobileIcon, NavMenu, NavItem, NavLinks, NavBtn, NavBtnLink } from './NavbarElements'
+import { Nav, NavbarContainer, NavLogo, MobileIcon, NavMenu, NavItem, NavLinkInternal, NavLinkExternal, NavBtn, NavBtnLink } from './NavbarElements'
 
-export const Navbar = ({ toggle }) => {
+export const Navbar = ({ toggle, navbarData }) => {
 	const [scrollNav, setScrollNav] = useState(false)
 
 	const changeNav = () => setScrollNav(window.scrollY >= 80*3) //navbar height
@@ -11,30 +11,34 @@ export const Navbar = ({ toggle }) => {
 
 	return (
 		<>
-			<IconContext.Provider value={{color: '#fff'}}>
+			<IconContext.Provider value={{color: 'var(--fg)' }}>
 				<Nav scrollNav={scrollNav}>
 					<NavbarContainer>
-						<NavLogo to='home' smooth={true} duration={500} spy={true} exact={1} offset={-80}>SITENAME</NavLogo>
+						<NavLogo to={navbarData.logo_navbar_link} smooth={true} duration={500} spy={true} exact={1} offset={-80}>{navbarData.logo_text}</NavLogo>
 						<MobileIcon onClick={toggle}>
 							<FaBars />
 						</MobileIcon>
 						<NavMenu>
-							<NavItem>
-								<NavLinks to='about' smooth={true} duration={500} spy={true} exact='true' offset={-80}>About</NavLinks>
-							</NavItem>
-							<NavItem>
-								<NavLinks to='discover' smooth={true} duration={500} spy={true} exact='true' offset={-80}>Discover</NavLinks>
-							</NavItem>
-							<NavItem>
-								<NavLinks to='services' smooth={true} duration={500} spy={true} exact='true' offset={-80}>Services</NavLinks>
-							</NavItem>
-							<NavItem>
-								<NavLinks to='signup' smooth={true} duration={500} spy={true} exact='true' offset={-80}>Sign Up</NavLinks>
-							</NavItem>
+							{
+								navbarData.links.map(link => {
+									let navLink
+									if (link.internal_link) {
+										navLink = <NavLinkInternal to={link.link_route} smooth={true} duration={500} spy={true} exact='true' offset={-80}>{link.text}</NavLinkInternal>
+									} else {
+										navLink = <NavLinkExternal to={{pathname: "https://"+link.link_route}} target="_blank">{link.text}</NavLinkExternal>
+									}
+									return (<NavItem>{navLink}</NavItem>)
+								})
+							}
 						</NavMenu>
-						<NavBtn>
-							<NavBtnLink to='/signin'>Sign In</NavBtnLink>
-						</NavBtn>
+						{
+							navbarData.show_sign_in_button ? 
+							<NavBtn>
+								<NavBtnLink to='/signin'>{navbarData.sign_in_button_text}</NavBtnLink>
+							</NavBtn>
+							: null
+							
+						}
 					</NavbarContainer>
 				</Nav>
 			</IconContext.Provider>

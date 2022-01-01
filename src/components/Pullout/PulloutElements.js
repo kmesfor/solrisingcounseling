@@ -11,7 +11,7 @@ export const PulloutContainer = styled.aside`
 	align-items: center;
 	border-top-right-radius: 8px;
 	border-bottom-right-radius: 8px;
-	background: var(--bg);
+	background: var(--bg-str);
 	color: var(--fg);
 	height: 100%;
 	top: 0;
@@ -54,7 +54,7 @@ export const Icon = styled.div`
 	align-items: center;
 	border-top-right-radius: 8px;
 	border-bottom-right-radius: 8px;
-	background: var(--bg);
+	background: var(--bg-str);
 	color: var(--fg);
 	padding: 20px 20px;
 	top: 65%;

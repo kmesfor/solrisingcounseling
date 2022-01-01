@@ -1,9 +1,9 @@
 import React from 'react'
-import { SidebarContainer, Icon, CloseIcon, SidebarWrapper, SidebarMenu, SidebarLink, SideBtnWrap, SidebarRoute } from './SidebarElements'
+import { SidebarContainer, Icon, CloseIcon, SidebarWrapper, SidebarMenu, SidebarLinkInternal, SidebarLinkExternal, SideBtnWrap, SidebarRoute } from './SidebarElements'
 
 
 //TODO: get data from navbar options
-const Sidebar = ({ isOpen, toggle }) => {
+const Sidebar = ({ isOpen, toggle, sidebarData }) => {
 	return (
 		<SidebarContainer isOpen={isOpen} onClick={toggle}>
 			<Icon onClick={toggle}>
@@ -11,14 +11,23 @@ const Sidebar = ({ isOpen, toggle }) => {
 			</Icon>
 			<SidebarWrapper>
 				<SidebarMenu>
-					<SidebarLink to='about' onClick={toggle}>About</SidebarLink>
-					<SidebarLink to='discover' onClick={toggle}>Discover</SidebarLink>
-					<SidebarLink to='services' onClick={toggle}>Services</SidebarLink>
-					<SidebarLink to='signup' onClick={toggle}>Sign Up</SidebarLink>
+					{
+						sidebarData.links.map(link => {
+							if (link.internal_link) {
+								return <SidebarLinkInternal to={link.link_route} onClick={toggle}>{link.text}</SidebarLinkInternal>
+							} else {
+								return <SidebarLinkExternal to={{pathname: "https://"+link.link_route}} target="_blank">{link.text}</SidebarLinkExternal>
+							}
+						})
+					}
 				</SidebarMenu>
-				<SideBtnWrap>
-					<SidebarRoute to='/signin'>Sign In</SidebarRoute>
-				</SideBtnWrap>
+				{
+					sidebarData.show_sign_in_button ?
+					<SideBtnWrap>
+						<SidebarRoute to='/signin'>{sidebarData.sign_in_button_text}</SidebarRoute>
+					</SideBtnWrap>
+					: null
+				}
 			</SidebarWrapper>
 		</SidebarContainer>
 	)

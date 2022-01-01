@@ -3,7 +3,7 @@ import { Link as LinkR } from 'react-router-dom'
 import { Link as LinkS } from 'react-scroll'
 
 export const Nav = styled.nav`
-	background: ${({scrollNav}) => (scrollNav ? '#000' : 'transparent')};
+	background: ${({scrollNav}) => (scrollNav ? 'var(--bg-str)' : 'transparent')};
 	height: 80px;
 	margin-top: -80px;
 	display: flex;
@@ -30,7 +30,7 @@ export const NavbarContainer = styled.div`
 `
 
 export const NavLogo = styled(LinkS)`
-	color: #fff;
+	color: var(--fg);
 	justify-self: flex-start;
 	cursor: pointer;
 	font-size: 1.5rem;
@@ -40,7 +40,7 @@ export const NavLogo = styled(LinkS)`
 	font-weight: bold;
 	text-decoration: none;
 	&.active {
-		border-bottom: 3px solid #01bf71;
+		border-bottom: 3px solid var(--hl);
 	}
 `
 
@@ -55,7 +55,7 @@ export const MobileIcon = styled.div`
 		transform: translate(-100%, 60%);
 		font-size: 1.8rem;
 		cursor: pointer;
-		color: #fff;
+		color: var(--fg);
 	}
 `
 
@@ -75,8 +75,8 @@ export const NavItem = styled.li`
 	height: 80px;
 `
 
-export const NavLinks = styled(LinkS)`
-	color: #fff;
+export const NavLinkInternal = styled(LinkS)`
+	color: var(--fg);
 	display: flex;
 	align-items: center;
 	text-decoration: none;
@@ -85,7 +85,23 @@ export const NavLinks = styled(LinkS)`
 	cursor: pointer;
 
 	&.active {
-		border-bottom: 3px solid #01bf71;
+		border-bottom: 3px solid var(--hl);
+		padding-bottom: 1px;
+		font-weight: bold;
+	}
+`
+
+export const NavLinkExternal= styled(LinkR)`
+	color: var(--fg);
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	padding: 0 1rem;
+	height: 100%;
+	cursor: pointer;
+
+	&.active {
+		border-bottom: 3px solid var(--hl);
 		padding-bottom: 1px;
 		font-weight: bold;
 	}
@@ -101,10 +117,10 @@ export const NavBtn = styled.nav`
 
 export const NavBtnLink = styled(LinkR)`
 	border-radius: 50px;
-	background: #01bf71;
+	background: var(--hl);
 	white-space: nowrap;
 	padding: 10px 22px;
-	color: #010606;
+	color: var(--bg);
 	font-size: 16px;
 	outline: none;
 	border: none;
@@ -114,7 +130,7 @@ export const NavBtnLink = styled(LinkR)`
 
 	&:hover {
 		transition: all 0.2s ease-in-out;
-		background: #fff;
-		color: #010606;
+		background: var(--fg);
+		color: var(--bg);
 	}
 `

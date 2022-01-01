@@ -12,8 +12,8 @@ const MovementButton = styled(Link)`
 	position: fixed;
 	z-index: 998;
 
-	background: #262626;
-	color: #fff;
+	background: var(--bg);
+	color: var(--fg);
 	opacity: 45%;
 	padding: 18px 20px;
 	bottom: 100px;
@@ -28,7 +28,7 @@ const MovementButton = styled(Link)`
 
 	&:hover {
 		opacity: 85%;
-		color: #01bf71;
+		color: var(--hl);
 	}
 
 	&:active {

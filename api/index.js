@@ -8,11 +8,14 @@ const SITE_ORIGIN = require('./secrets.json').SITE_ORIGIN
 
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const fileUpload = require('express-fileupload')
 
 app.use(cors())
 app.use(bodyParser.json())
+app.use(fileUpload())
 
 const ASSETS_STORAGE_PATH = require('./secrets.json').ASSETS_STORAGE_PATH
+
 
 const API_PORT = require('./secrets.json').API_PORT
 const fs = require('fs')
@@ -36,12 +39,12 @@ app.get('/api/config', (req, res) => {
 			configFile.pullout_entries[i].icon = resolveFile(configFile.pullout_entries[i].icon)
 			configFile.pullout_entries[i].banner = resolveFile(configFile.pullout_entries[i].banner)
 		}
-
 		if (!configFile) return res.send({statusCode: 404, message: 'Site data not found'})
+		console.log(configFile)
 		return res.send({statusCode: 200, message: 'OK', data: configFile})
 	} catch (err) {
 		console.log(err)
-		res.send({statusCode: 500, message: 'Internal server error: ' + err})
+		return res.send({statusCode: 500, message: 'Internal server error: ' + err})
 	}
 })
 
@@ -52,7 +55,7 @@ app.post('/api/config', (req, res) => {
 	if (!req.body.data) return res.send({statusCode: 401, message: 'Missing data'})
 	if (req.body.auth !== AUTH_SECRET) return res.send({statusCode: 401, message: 'Invalid auth credentials'})
 	try {
-		fs.writeFileSync(path.resolve(ASSETS_STORAGE_PATH + '/site_data.json'), res.body.data)
+		fs.writeFileSync(path.resolve(ASSETS_STORAGE_PATH + '/site_data.json'), JSON.stringify(req.body.data, null, 4))
 	} catch (err) {
 		console.log(err)
 		res.send({statusCode: 500, message: 'Internal server error: ' + err})
@@ -63,14 +66,80 @@ app.post('/api/config', (req, res) => {
 app.get('/api/assets/:assetFileName', (req, res) => {
 	if (!req.params.assetFileName) return res.send({statusCode: 401, message: 'Invalid request'})
 	try {
-		return res.sendFile(path.resolve(ASSETS_STORAGE_PATH + '/' + req.params.assetFileName))
+		return res.sendFile(path.resolve(ASSETS_STORAGE_PATH + '/assets/' + req.params.assetFileName))
 	} catch (err) {
 		return res.send({statusCode: 500, message: 'Error: ' + err})
 	}
 })
 
+app.post('/api/create_asset', (req, res) => {
+	console.log(req.files)
+	console.log(req.body)
+	if (!req.body.auth) return res.send({statusCode: 401, message: 'Missing auth credentials'})
+	if (req.body.auth !== AUTH_SECRET) return res.send({statusCode: 401, message: 'Invalid auth credentials'})
+	if (!req.body.name || req.body.isImage === undefined || (req.body.isImage !== 'true' | 'false') || !req.body.alt) return res.send({statusCode: 401, message: 'Invalid data'})
+	if (!req.files.file) return res.send({statusCode: 401, message: 'Invalid file upload'})
+	
+	let configFile = JSON.parse(fs.readFileSync(path.resolve(ASSETS_STORAGE_PATH + '/site_data.json'), 'utf-8'))
+	if (configFile.assets[req.body.name]) return res.send({statusCode: 401, message: 'A file with that name already exists'})
+
+	let fileName = req.body.name + '.' + (req.files.file.name.split('.')[req.files.file.name.split('.').length - 1]) // file name + . + uploaded file ending
+	
+	for (let i = 0; i < Object.keys(configFile.assets).length; i++) {
+		if (Object.keys(configFile.assets)[i].src === fileName) return res.send({statusCode: 401, message: 'A file with that name already exists'}) 
+	}
+	configFile.assets[req.body.name] = {
+		src: fileName,
+		isImage: req.body.isImage.toLowerCase() === 'true' ? true : false,
+		alt: req.body.alt
+	}
+	req.files.file.mv(path.resolve(ASSETS_STORAGE_PATH + '/assets/' + fileName), (err) => {
+		if (err) return res.send({statusCode: 500, message: 'Error: ' + err})
+		try {
+			fs.writeFileSync(path.resolve(ASSETS_STORAGE_PATH + '/site_data.json'), JSON.stringify(configFile, null, 4))
+		} catch (err) {
+			console.log(err)
+			return res.send({statusCode: 500, message: 'Internal server error: ' + err})
+		}
+		return res.send({statusCode: 200, message: 'OK'})
+	})
+})
+
+app.post('/api/delete_asset', (req, res) => {
+	console.log(req.files)
+	console.log(req.body)
+	if (!req.body.auth) return res.send({statusCode: 401, message: 'Missing auth credentials'})
+	if (req.body.auth !== AUTH_SECRET) return res.send({statusCode: 401, message: 'Invalid auth credentials'})
+	if (!req.body.name || req.body.isImage === undefined || (req.body.isImage !== 'true' | 'false') || !req.body.alt) return res.send({statusCode: 401, message: 'Invalid data'})
+	if (!req.files.file) return res.send({statusCode: 401, message: 'Invalid file upload'})
+	
+	let configFile = JSON.parse(fs.readFileSync(path.resolve(ASSETS_STORAGE_PATH + '/site_data.json'), 'utf-8'))
+	if (configFile.assets[req.body.name]) return res.send({statusCode: 401, message: 'A file with that name already exists'})
+
+	let fileName = req.body.name + '.' + (req.files.file.name.split('.')[req.files.file.name.split('.').length - 1]) // file name + . + uploaded file ending
+	
+	for (let i = 0; i < Object.keys(configFile.assets).length; i++) {
+		if (Object.keys(configFile.assets)[i].src === fileName) return res.send({statusCode: 401, message: 'A file with that name already exists'}) 
+	}
+	configFile.assets[req.body.name] = {
+		src: fileName,
+		isImage: req.body.isImage.toLowerCase() === 'true' ? true : false,
+		alt: req.body.alt
+	}
+	req.files.file.mv(path.resolve(ASSETS_STORAGE_PATH + '/assets/' + fileName), (err) => {
+		if (err) return res.send({statusCode: 500, message: 'Error: ' + err})
+		try {
+			fs.writeFileSync(path.resolve(ASSETS_STORAGE_PATH + '/site_data.json'), JSON.stringify(configFile, null, 4))
+		} catch (err) {
+			console.log(err)
+			return res.send({statusCode: 500, message: 'Internal server error: ' + err})
+		}
+		return res.send({statusCode: 200, message: 'OK'})
+	})
+})
+
 function resolveFile(file) {
-	return path.resolve(ASSETS_STORAGE_PATH + file)
+	return path.resolve(ASSETS_STORAGE_PATH + '/assets/' + file)
 }
 
 // app.get('/api/assets', (req, res) => {
