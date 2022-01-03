@@ -9,18 +9,19 @@ export const Container = styled.div`
 	right: 0;
 	top: 0;
 	z-index: 0;
-	overflow: hidden;
+	overflow: scroll;
 	background: var(--hl);
 `
 
 export const FormWrap = styled.div`
-	height: 100%;
+	height: 80%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	margin-bottom: 32px;
 
 	@media screen and (max-width: 400px) {
-		height: 80%;
+		height: 60%;
 	}
 `
 

@@ -1,16 +1,17 @@
 import React, {useState} from 'react'
 import { useHistory } from 'react-router'
+import Footer from '../Footer'
 import { Container, FormWrap, Icon, FormContent, Form, FormH1, FormLabel, FormInput, FormButton, Text, FormLink, FormError } from './AdminSigninElements'
 const api_routes = require('../../config.json').API
 
 
-const AdminSignIn = () => {
+const AdminSignIn = ({siteData}) => {
 	const [username, setUsername] = useState(undefined)
 	const [password, setPassword] = useState(undefined)
 	const [visibleError, setVisibleError] = useState(false)
 	const [errorMessage, setErrorMessage] = useState(undefined)
 
-
+	console.log(siteData)
 	const history = useHistory()
 	async function handleSubmit(event) {
 		event.preventDefault()
@@ -44,7 +45,7 @@ const AdminSignIn = () => {
 		<>
 			<Container>
 				<FormWrap>
-					<Icon to='/'>SITENAME</Icon>
+					<Icon to='/'>{siteData.social_media.logo_text}</Icon>
 					<FormContent>
 						<Form onSubmit={handleSubmit}>
 							<FormH1>Site admin sign-in</FormH1>
@@ -58,6 +59,8 @@ const AdminSignIn = () => {
 						</Form>
 					</FormContent>
 				</FormWrap>
+				<Footer footerData={siteData.footer} socialData={siteData.social_media}/>
+
 			</Container>
 		</>
 	)

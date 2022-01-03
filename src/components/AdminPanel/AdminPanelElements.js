@@ -128,20 +128,39 @@ export const Banner = styled.h3`
 	left: 50%;
 	transform: translateX(-50%);
 	transition: 0.8s all ease;
+	z-index: 999;
 `
 
 export const AdminAssetListWrapper = styled.div`
 	display: flex;
 	flex-direction: row;
-	flex-wrap: wrap;
-	padding: 50px;
-	margin: 50px;
-	justify-content: left;
 	row-gap: 50px;
-	column-gap: 50px;
+	column-gap: 32px;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	padding: 50px 16px;
+`
+
+export const AdminAssetListAssetWrapper = styled.div`
+	display: flex;
+	border: 6px var(--hl) solid;
+	border-radius: 4px;
+	padding: 32px;
+	color: var(--hl);
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	row-gap: 16px;
 `
 
 export const AdminAssetDeleteBtn = styled(FaTrash)`
+	color: var(--fg);
+	font-size: 24px;
+	&:hover {
+		transform: scale(1.20);
+		color: var(--err);
+	}
 `
 
 export const AdminAssetAddBtn = styled.p`
@@ -182,18 +201,61 @@ export const AdminAssetAddBtnWrapper = styled.div`
 `
 
 export const AdminAssetPopupWrapper = styled.div`
+	background: var(--hl);
+	position: fixed;
+	display: grid;
+	grid-template-rows: 1fr;
+	row-gap: 32px;
+	border-radius: 10px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+	height: calc(100% - 4vh);
+	top: 2vh;
+	bottom: 2vh;
+	z-index: 998;
+	right: ${({ isactive }) => ((isactive) ? '1vw' : '-100%')};
+	transition: all 0.2s ease-in-out;
+	overflow-y: scroll;
+	width: calc(100% - 2vw);
+
 `
 export const AdminAssetInput = styled.input`
+	width: 35%;
+	height: 2.5vw;
+	@media screen and (max-width: 786px) {  
+		height: 5vw;
+  	}
+	margin-bottom: 16px;
+	padding: 8px;
+	border: none;
+	border-radius: 4px;
+	background: var(--fg);
+	color: var(--bg);
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
 `
 
 export const AdminAssetInputLabel = styled.h2`
+	align-self: center;
+	color: var(--fg);
+	font-size: 16px;
+	font-weight: 900;
+	text-align: center;
+	margin-bottom: 0;
+	align-self: end;
 `
 
 export const AdminAssetTypeSelect = styled.input`
+	color: var(--fg);
+	height: 36px;
+	width: 100px;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
 `
 
 export const AdminAssetFileUpload = styled.input`
-	padding: 16px 16px;
+	padding: 16px;
 	border: none;
 	border-left: 2px solid;
 	border-color: rgba(var(--hl-no-rgba), 0.4);
@@ -205,11 +267,34 @@ export const AdminAssetFileUpload = styled.input`
 		border: 3px rgba(var(--hl-no-rgba), 0.7) solid;
 		border-radius: 10px;
 	}
+	width: 65%;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
 `
 
 export const AdminAssetSaveBtn = styled(FaSave)`
+	padding-top: 16px;
+	margin-bottom: 16px;
+	color: var(--bg);
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 50px;
+	&:hover {
+		color: var(--fg);
+	}
 `
 
 export const AdminAssetPopupExitBtn = styled(FaTimes)`
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 36px;
+
+	color: var(--bg);
+	&:hover {
+		color: var(--fg)
+	}
 `
 // TODO: add additional css to make the button more interactive and in right location

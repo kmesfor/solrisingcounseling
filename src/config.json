@@ -1,6 +1,6 @@
 {
 	"API": {
-		"BASE": "http://localhost:5001/api",
+		"BASE": "http://solrisingcounseling.com/api",
 		"LOGIN": "/login",
 		"ASSETS": "/assets",
 		"CREATE_ASSET": "/create_asset",

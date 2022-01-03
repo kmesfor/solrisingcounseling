@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { AdminPanelSaveTitle, AdminWrapper, AdminListWrapper, AdminPanelSaveWrapper, AdminPanelSaveBtn, AdminPanelAuthInput, AdminPanelSiteDataInput, Banner, AdminAssetListWrapper, AdminAssetDeleteBtn, AdminAssetAddBtnWrapper, AdminAssetAddBtn, AdminAssetPopupWrapper, AdminAssetInputLabel, AdminAssetInput, AdminAssetTypeSelect, AdminAssetFileUpload, AdminAssetSaveBtn, AdminAssetPopupExitBtn} from './AdminPanelElements'
+import { AdminPanelSaveTitle, AdminWrapper, AdminListWrapper, AdminPanelSaveWrapper, AdminPanelSaveBtn, AdminPanelAuthInput, AdminPanelSiteDataInput, Banner, AdminAssetListWrapper, AdminAssetDeleteBtn, AdminAssetAddBtnWrapper, AdminAssetAddBtn, AdminAssetPopupWrapper, AdminAssetInputLabel, AdminAssetInput, AdminAssetTypeSelect, AdminAssetFileUpload, AdminAssetSaveBtn, AdminAssetPopupExitBtn, AdminAssetListAssetWrapper} from './AdminPanelElements'
 import ListElement from '../List'
 import config from '../../config.json'
 import { convertFieldDataToSiteData } from './convertFieldDataToSiteData'
 import getApiFile from '../../getApiFile'
+import {Icon} from '../AdminSignin/AdminSigninElements'
 
 const AdminPanel = ({siteData, getSiteData, setSiteData, adminPanelConfig}) => {
 
@@ -48,7 +49,7 @@ const AdminPanel = ({siteData, getSiteData, setSiteData, adminPanelConfig}) => {
 		let alt = document.getElementById('admin-asset-alt').value
 		let isImage = document.getElementById('admin-asset-is-image').value === 'on'
 		let file = document.getElementById('admin-asset-file-upload').files[0]
-		let auth = document.getElementById('admin-asset-upload-auth').value
+		let auth = document.getElementById('admin-asset-auth').value
 
 		if (name === undefined || alt === undefined || isImage === undefined || file === undefined || auth === undefined) return setBanner([true, 'Asset upload form is not complete!'])
 		const formData = new FormData()
@@ -83,13 +84,14 @@ const AdminPanel = ({siteData, getSiteData, setSiteData, adminPanelConfig}) => {
 	}
 	return (
 		<AdminWrapper>
+			<Icon to='/'>{siteData.social_media.logo_text}</Icon>
 			<AdminPanelSaveTitle>Admin Panel</AdminPanelSaveTitle>
 			{
 				banner.length > 0 ? <Banner isactive={true} iserr={banner[0]}>{banner[1]}</Banner> : <Banner isactive={false} iserr={null} />
 			}
 			<AdminPanelSaveTitle>Save changes</AdminPanelSaveTitle>
 			<AdminPanelSaveWrapper>
-				<AdminPanelAuthInput type='text' id='admin_panel_auth_secret' defaultValue='Insert auth token' />
+				<AdminPanelAuthInput type='text' id='admin_panel_auth_secret' defaultValue='Authorization token' />
 				<AdminPanelSaveBtn isactive={true} onClick={() =>{saveSiteData(document.getElementById('site-data-input').value)}}/>
 			</AdminPanelSaveWrapper>
 			<AdminPanelSiteDataInput id='site-data-input' defaultValue={JSON.stringify(siteData, null, 4)}/>
@@ -100,6 +102,8 @@ const AdminPanel = ({siteData, getSiteData, setSiteData, adminPanelConfig}) => {
 					Add Asset
 				</AdminAssetAddBtn>
 			</AdminAssetAddBtnWrapper>
+			<AdminAssetInputLabel>Authorization</AdminAssetInputLabel>
+			<AdminAssetInput id='admin-asset-auth' defaultValue='Authorization token'/>
 
 			<AdminAssetListWrapper>
 				{
@@ -112,6 +116,7 @@ const AdminPanel = ({siteData, getSiteData, setSiteData, adminPanelConfig}) => {
 						}
 					*/
 					Object.keys(siteData.assets).map(asset => {
+						let name = asset
 						asset = siteData.assets[asset]
 						let assetTag
 						if (asset.isImage) {
@@ -121,21 +126,31 @@ const AdminPanel = ({siteData, getSiteData, setSiteData, adminPanelConfig}) => {
 						}
 
 						return (
-							<>
-							<h1>{asset.name}</h1>
-							{assetTag}
-							<AdminAssetDeleteBtn onClick={() => {
-								for (let i = 0; i < Object.keys(siteData.assets).length; i++) {
-									if (siteData.assets[Object.keys(siteData.assets)[i]] === asset) {
-										delete siteData.assets[Object.keys(siteData.assets)[i]]
-										break
+							<AdminAssetListAssetWrapper>
+								<p>{name}</p>
+								{assetTag}
+								<AdminAssetDeleteBtn onClick={async () => {
+									const assetName = Object.keys(siteData.assets).find(key => siteData.assets[key] === asset);
+									if (!assetName) return
+									try {
+										let res = await fetch(config.API.BASE + config.API.DELETE_ASSET, {
+											method: 'POST',
+											headers: {
+												'Content-Type': 'application/json',
+											},
+											body: JSON.stringify({
+												name: assetName,
+												auth: document.getElementById('admin-asset-auth').value
+											})
+										})	
+										res = await res.json()
+										if (res.statusCode !== 200) return setBanner([true, 'Error: ' + res.message])
+										else return setBanner([false, 'Success! Reload the page to see updates'])
+									} catch (err) {
+										return setBanner([true, 'Error: ' + err])
 									}
-								}
-
-								setSiteData(siteData)
-								document.getElementById('site-data-input').value = JSON.stringify(siteData, null, 4)
-							}} />
-							</>
+								}} />
+							</AdminAssetListAssetWrapper>
 						)
 					})
 				}
@@ -149,10 +164,8 @@ const AdminPanel = ({siteData, getSiteData, setSiteData, adminPanelConfig}) => {
 				<AdminAssetInputLabel>Asset is image?</AdminAssetInputLabel>
 				<AdminAssetTypeSelect id='admin-asset-is-image' type='checkbox'/>
 				<AdminAssetFileUpload id='admin-asset-file-upload' type='file' accept='.png,.jpg,.jpeg,.mp4,.mp3,.svg' />
-				<AdminAssetInputLabel>Authorization</AdminAssetInputLabel>
-				<AdminAssetInput id='admin-asset-upload-auth' />
 				<AdminAssetSaveBtn onClick={() => saveAssetUpload()}/>
-				<AdminAssetPopupExitBtn />
+				<AdminAssetPopupExitBtn onClick={() => setIsActive(!isActive)}/>
 			</AdminAssetPopupWrapper>
 			{/* <AdminListWrapper> */}
 				{/* <ListElement id='asset-manager' title='Asset Manager' fields={getAssetFieldsFromSiteData(siteData)} /> */}
