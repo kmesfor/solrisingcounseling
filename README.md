@@ -1,7 +1,9 @@
 # Solrising website
 
 Created by Kian Mesforush
+
 Site design adapted from [Brian Design](https://www.youtube.com/channel/UCsKsymTY_4BYR-wytLjex7A)
+
 Admin panel design and site backend made from scratch
 
 Site is served statically from within the `/api` folder. 
