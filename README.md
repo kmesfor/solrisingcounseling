@@ -1,3 +1,27 @@
+# Solrising website
+
+Created by Kian Mesforush
+
+Site design adapted from [Brian Design](https://www.youtube.com/channel/UCsKsymTY_4BYR-wytLjex7A)
+
+Admin panel design and site backend made from scratch
+
+Site is served statically from within the `/api` folder. 
+
+To deploy, simply run:
+`node ./api/index.js` from within the root project folder 
+or `node index.js` from the `/api` folder
+
+## Longterm plans / feature additions (more detailed version elsewhere)
+* Finish the list component and use that throughout the admin panel for editing data rather than a textbox
+* Add a darkmode option to the cards section
+* Make admin panel update without reload required when assets are added/removed
+* External link options (similar to footer) for section components
+* Finish pullout menu
+* Clean up source code and remove unnecessary logging
+* Remove the loading screen, halt request until resources are loaded
+* Secure `/admin` endpoint to only be allowed to be accessed after a successful sign in (removes necessary redundancy of an auth token). Users should not be able to override the sign in flow by navigating to `/admin` directly. Possibly use a session token system to fix this error
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
