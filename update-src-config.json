@@ -12,7 +12,7 @@
 				"echo commands before"
 			],
 			"runWhenComplete": [
-				"npm run build && pm2 restart site",
+				"pm2 restart site",
 				"echo completed!"
 			],
 			"confirmFile": {
