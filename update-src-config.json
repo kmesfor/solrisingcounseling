@@ -1,0 +1,29 @@
+{
+	"port": 8080,
+	"endpoint": "/internal/update-src",
+	"repos": [
+		{
+			"name": "solrisingcounseling",
+			"full_name": "kmesfor/solrisingcounseling",
+			"branch": "master",
+			"access_token": "REDACTED",
+			"location": "/root/site",
+			"runBeforePull": [
+				"echo commands before"
+			],
+			"runWhenComplete": [
+				"npm run build && pm2 restart site",
+				"echo completed!"
+			],
+			"confirmFile": {
+				"relativeLocation": "update-src-confirm.txt",
+				"confirmation": "a87SL3**35HG1"
+			},
+			"onRejectionScript": "scripts/rejection.js",
+			"onErrorScript": "scripts/error.js",
+			"onSuccessScript": "scripts/success.js"
+		}
+	]
+
+	
+}
