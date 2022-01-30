@@ -30,7 +30,7 @@ const HomeSection = ({sectionData, assets}) => {
 				<VideoBg autoPlay loop muted src={windowWidth > 786 ? getApiFile(assets[sectionData.asset].src) : getApiFile(assets[sectionData.asset_mobile].src)} alt={assets[sectionData.asset].alt} type={sectionData.asset_type} />
 			</HomeBg>
 			<HomeContent>
-				<HomeH1>{sectionData.main_content}test</HomeH1>
+				<HomeH1>{sectionData.main_content}</HomeH1>
 				<HomeP>{sectionData.description}</HomeP>
 				{
 					sectionData.button_visible ? 
