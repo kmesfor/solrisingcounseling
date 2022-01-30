@@ -31,7 +31,7 @@ const HomeSection = ({sectionData, assets}) => {
 			</HomeBg>
 			<HomeContent>
 				<HomeH1>{sectionData.main_content}</HomeH1>
-				<HomeP>{sectionData.description}test1</HomeP>
+				<HomeP>{sectionData.description}</HomeP>
 				{
 					sectionData.button_visible ? 
 					<HomeBtnWrapper>
