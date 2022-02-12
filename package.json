@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "fs": "*",
+    "jsoneditor-react": "^3.1.2",
     "mongodb": "^3.6.9",
     "mongodb-client-encryption": "^1.2.5",
     "node-fetch": "^2.6.1",

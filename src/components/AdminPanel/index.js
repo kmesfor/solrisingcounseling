@@ -5,6 +5,8 @@ import config from '../../config.json'
 import { convertFieldDataToSiteData } from './convertFieldDataToSiteData'
 import getApiFile from '../../getApiFile'
 import {Icon} from '../AdminSignin/AdminSigninElements'
+import { JsonEditor as Editor } from 'jsoneditor-react';
+import 'jsoneditor-react/es/editor.min.css';
 
 const AdminPanel = ({siteData, getSiteData, setSiteData, adminPanelConfig}) => {
 
@@ -91,6 +93,7 @@ const AdminPanel = ({siteData, getSiteData, setSiteData, adminPanelConfig}) => {
 			}
 			<AdminPanelSaveTitle>Save changes</AdminPanelSaveTitle>
 			<AdminPanelSaveWrapper>
+				<Editor value={null} onChange={(value) => console.log(value)} />
 				<AdminPanelAuthInput type='text' id='admin_panel_auth_secret' defaultValue='Authorization token' />
 				<AdminPanelSaveBtn isactive={true} onClick={() =>{saveSiteData(document.getElementById('site-data-input').value)}}/>
 			</AdminPanelSaveWrapper>
