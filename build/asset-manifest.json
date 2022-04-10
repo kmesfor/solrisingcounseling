@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.0b7d9178.chunk.css",
-    "main.js": "/static/js/main.db94af1d.chunk.js",
-    "main.js.map": "/static/js/main.db94af1d.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.19621a36.js",
-    "runtime-main.js.map": "/static/js/runtime-main.19621a36.js.map",
-    "static/css/2.b5743ac5.chunk.css": "/static/css/2.b5743ac5.chunk.css",
-    "static/js/2.530b2ce1.chunk.js": "/static/js/2.530b2ce1.chunk.js",
-    "static/js/2.530b2ce1.chunk.js.map": "/static/js/2.530b2ce1.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/2.b5743ac5.chunk.css.map": "/static/css/2.b5743ac5.chunk.css.map",
-    "static/css/main.0b7d9178.chunk.css.map": "/static/css/main.0b7d9178.chunk.css.map",
-    "static/js/2.530b2ce1.chunk.js.LICENSE.txt": "/static/js/2.530b2ce1.chunk.js.LICENSE.txt",
-    "static/media/jsoneditor.css": "/static/media/jsoneditor-icons.15f2789d.svg"
+    "main.css": "/kmesfor/solrisingcounselingstatic/css/main.0b7d9178.chunk.css",
+    "main.js": "/kmesfor/solrisingcounselingstatic/js/main.d6cb4d2d.chunk.js",
+    "main.js.map": "/kmesfor/solrisingcounselingstatic/js/main.d6cb4d2d.chunk.js.map",
+    "runtime-main.js": "/kmesfor/solrisingcounselingstatic/js/runtime-main.55d3cd25.js",
+    "runtime-main.js.map": "/kmesfor/solrisingcounselingstatic/js/runtime-main.55d3cd25.js.map",
+    "static/css/2.97e511df.chunk.css": "/kmesfor/solrisingcounselingstatic/css/2.97e511df.chunk.css",
+    "static/js/2.29225323.chunk.js": "/kmesfor/solrisingcounselingstatic/js/2.29225323.chunk.js",
+    "static/js/2.29225323.chunk.js.map": "/kmesfor/solrisingcounselingstatic/js/2.29225323.chunk.js.map",
+    "index.html": "/kmesfor/solrisingcounselingindex.html",
+    "static/css/2.97e511df.chunk.css.map": "/kmesfor/solrisingcounselingstatic/css/2.97e511df.chunk.css.map",
+    "static/css/main.0b7d9178.chunk.css.map": "/kmesfor/solrisingcounselingstatic/css/main.0b7d9178.chunk.css.map",
+    "static/js/2.29225323.chunk.js.LICENSE.txt": "/kmesfor/solrisingcounselingstatic/js/2.29225323.chunk.js.LICENSE.txt",
+    "static/media/jsoneditor.css": "/kmesfor/solrisingcounselingstatic/media/jsoneditor-icons.15f2789d.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.19621a36.js",
-    "static/css/2.b5743ac5.chunk.css",
-    "static/js/2.530b2ce1.chunk.js",
+    "static/js/runtime-main.55d3cd25.js",
+    "static/css/2.97e511df.chunk.css",
+    "static/js/2.29225323.chunk.js",
     "static/css/main.0b7d9178.chunk.css",
-    "static/js/main.db94af1d.chunk.js"
+    "static/js/main.d6cb4d2d.chunk.js"
   ]
 }
