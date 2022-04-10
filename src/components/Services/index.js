@@ -12,7 +12,9 @@ const Services = ({sectionData, assets, cards}) => {
 				{cards.map(card => {
 					return (
 						<ServicesCard>
-							<ServicesIcon src={getApiFile(assets[card.image].src)} />
+							{card.image !== undefined || card.image !== "" ? 
+								<ServicesIcon src={getApiFile(assets[card.image].src)} />
+							: null}
 							<ServicesH2>{card.title}</ServicesH2>
 							<ServicesP>{card.description}</ServicesP>
 						</ServicesCard>

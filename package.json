@@ -2,11 +2,17 @@
   "name": "solrisingcounseling",
   "version": "0.1.0",
   "proxy": "http://solrisingcounseling.com",
+  "bin": {
+    "solrising": "./bin/solrising.js",
+    "solr": "./bin/solrising.js"
+  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "ajv": "^8.10.0",
+    "esm": "^3.2.25",
     "fs": "*",
     "jsoneditor-react": "^3.1.2",
     "mongodb": "^3.6.9",
@@ -46,5 +52,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "Created by Kian Mesforush",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kmesfor/solrisingcounseling.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kmesfor/solrisingcounseling/issues"
+  },
+  "homepage": "https://github.com/kmesfor/solrisingcounseling#readme"
 }
