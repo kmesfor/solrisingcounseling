@@ -10,15 +10,22 @@ const Services = ({sectionData, assets, cards}) => {
 			<ServicesH1>{sectionData.headline}</ServicesH1>
 			<ServicesWrapper>
 				{cards.map(card => {
-					return (
-						<ServicesCard>
-							{card.image === "" ? null :
+					if (card.image === "") {
+						return (
+							<ServicesCard>
+								<ServicesH2>{card.title}</ServicesH2>
+								<ServicesP>{card.description}</ServicesP>
+							</ServicesCard>
+						)
+					} else {
+						return (
+							<ServicesCard>
 								<ServicesIcon src={getApiFile(assets[card.image].src)} />
-							}
-							<ServicesH2>{card.title}</ServicesH2>
-							<ServicesP>{card.description}</ServicesP>
-						</ServicesCard>
-					)
+								<ServicesH2>{card.title}</ServicesH2>
+								<ServicesP>{card.description}</ServicesP>
+							</ServicesCard>
+						)
+					}
 				})}
 			</ServicesWrapper>
 		</ServicesContainer>
